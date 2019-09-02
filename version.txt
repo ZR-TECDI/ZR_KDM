@@ -1,3 +1,10 @@
+v02092019
+
+Changelog:
+Primera versión pública en github.
+
+* Agregada función que hace hablar a los npc
+
 v30072019
 
 Changelog:
