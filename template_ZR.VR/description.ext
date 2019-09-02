@@ -1,0 +1,50 @@
+//Loading Screen Info
+author = "ZR Army - Dept. Tecnico y Diseño";
+OnLoadName = "TEMPLATE ZR";
+OnLoadMission = "Uso exclusivo de Zona Roja Army.";
+//loadScreen = "loadscreen.jpg";
+overviewPicture = "overview.paa";
+overviewText = "Misión template para editores.";
+
+//Gametype and settings
+
+class Header
+{
+	gameType = COOP;
+	minPlayers = 1;
+	maxPlayers = 50;
+};
+
+//Respawn options
+Respawn = Base;
+RespawnDelay = 5;
+RespawnDialog = 0;
+
+//Mission Options
+onLoadIntroTime = "false";
+onLoadMissionTime = "false";
+disabledAI = 1;
+defriefing = 1;
+showGPS = 1;
+
+//Debug and Admin
+enableDebugConsole = 1;
+
+//Sets the variables for corpse removal manager
+corpseManagerMode = 1;
+corpseLimit = 25;
+corpseRemovalMinTime = 60;
+corpseRemovalMaxTime = 1800;
+
+
+// ***********  Imports **********
+
+//Sonidos
+// #include "cfg\cfgSounds.hpp"
+
+//funciones
+#include "cfg\cfgFunctions.hpp"
+
+//diálogos
+#include "dmb\dialog_def.hpp"
+#include "rc_pos\dialog_def.hpp"
