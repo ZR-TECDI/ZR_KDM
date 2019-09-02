@@ -1,13 +1,13 @@
 v30072019
 
 Changelog:
-Primera versi髇 del template libre de ZR para editores de misiones.
+Primera versi贸n del template libre de ZR para editores de misiones.
 
-* Agregada funci髇 pantallaNegraConTexto
-* Agregada funci髇 campoMinado
-* Agregada funci髇 ataqueMorteros
-* Agregada funci髇 checkPlayerAdmins (necesaria para el DMB)
-* Agregada funci髇 cambiarBrilloEnNoche
-* Agregada funci髇 construir (wip)
-* Agregada funci髇 reproducirSonido3D
-* Agregada funci髇 helper encontrarObjetosPorVariable
+* Agregada funci贸n pantallaNegraConTexto
+* Agregada funci贸n campoMinado
+* Agregada funci贸n ataqueMorteros
+* Agregada funci贸n checkPlayerAdmins (necesaria para el DMB)
+* Agregada funci贸n cambiarBrilloEnNoche
+* Agregada funci贸n construir (wip)
+* Agregada funci贸n reproducirSonido3D
+* Agregada funci贸n helper encontrarObjetosPorVariable
