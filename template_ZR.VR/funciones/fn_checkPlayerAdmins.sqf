@@ -1,6 +1,7 @@
 /*
     Autor: Riquelme
     Desc : Comprueba que los jugadores tengan permiso de administrar el servidor y les permite usar el DMB.
+    //TODO cambiar el modo de verificar para utilizar SteamID en lugar de nombres
 
     Argumentos:
 	--
