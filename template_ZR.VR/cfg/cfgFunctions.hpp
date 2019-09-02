@@ -11,6 +11,7 @@ class CfgFunctions{
             class cambiarBrilloEnNoche {};
             class construir {};
             class reproducirSonido3D {};
+            class dialogoNPC {};
         };
         class helper{
             file = "helper";
