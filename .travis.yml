@@ -1,6 +1,10 @@
 language: python
 python:
-- '3.4'
+  - '3.4'
+before install:
+  - sudo pip install auto-changelog
 script:
-- python3 herramientas/validation/sqf_validator.py
-- python3 herramientas/validation/config_style_checker.py
+  - python3 herramientas/validation/sqf_validator.py
+  - python3 herramientas/validation/config_style_checker.py
+after_success:
+  - python3 -m auto_changelog
