@@ -2,9 +2,8 @@ language: python
 python:
   - '3.4'
 before install:
-  - poetry install
-  - poetry build
-  - pip install dist/*.whl
+  - pip install --user poetry
+  - pip install --user auto-changelog
 script:
   - python3 herramientas/validation/sqf_validator.py
   - python3 herramientas/validation/config_style_checker.py
