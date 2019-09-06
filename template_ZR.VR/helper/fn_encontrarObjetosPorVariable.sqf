@@ -10,7 +10,7 @@
 
     Ejemplos:
     "civil_enfermo_" call ZR_fnc_encontrarObjetosPorVariable; 
-	Retornaría un array con [civil_enfermo_1, civil_enfermo_2] si existieran en la misión.
+    Retornaría un array con [civil_enfermo_1, civil_enfermo_2] si existieran en la misión.
 
     Pública: No
  */

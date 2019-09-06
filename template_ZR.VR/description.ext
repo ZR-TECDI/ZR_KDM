@@ -10,9 +10,9 @@ overviewText = "Misión template para editores.";
 
 class Header
 {
-	gameType = COOP;
-	minPlayers = 1;
-	maxPlayers = 50;
+    gameType = COOP;
+    minPlayers = 1;
+    maxPlayers = 50;
 };
 
 //Respawn options

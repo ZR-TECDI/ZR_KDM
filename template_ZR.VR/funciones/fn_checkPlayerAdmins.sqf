@@ -4,10 +4,10 @@
     //TODO cambiar el modo de verificar para utilizar SteamID en lugar de nombres
 
     Argumentos:
-	--
+    --
 
     Retorna:
-	True si el jugador es admin, false si no lo es <BOOL>
+    True si el jugador es admin, false si no lo es <BOOL>
 
     Ejemplos:
     ["zonaMinada", "APERSMine", 20] call ZR_fnc_campoMinado; Poblará la zona "zonaMinada" con 20 minas 

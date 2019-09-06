@@ -18,5 +18,5 @@ class CfgFunctions{
 
             class encontrarObjetosPorVariable {};
         };
-    };	
+    };    
 };

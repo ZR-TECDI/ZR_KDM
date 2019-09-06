@@ -12,7 +12,7 @@
     ["Puente Merderet\nFrancia"] call ZR_fnc_pantallaNegraConTexto;
 
     Pública: Sí
-	Necesita correr en la máquina local del afectado, es buena idea usar remoteExec
+    Necesita correr en la máquina local del afectado, es buena idea usar remoteExec
  */
 
 params["_texto"];
