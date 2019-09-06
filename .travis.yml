@@ -4,7 +4,7 @@ python:
 before_install:
   # - pip3 install sqflint
 install:
-  - pip install -r requirements.txt
+  - pip install -r herramientas/requirements.txt
 script:
   - python3 herramientas/validation/sqf_validator.py
   - python3 herramientas/validation/config_style_checker.py
