@@ -1,9 +1,8 @@
 language: python
 python:
   - '3.4'
-before install:
-  - pip install --user poetry
-  - pip install --user auto-changelog
+install:
+  - pip install -r herramientas/requirements.txt
 script:
   - python3 herramientas/validation/sqf_validator.py
   - python3 herramientas/validation/config_style_checker.py
