@@ -6,9 +6,10 @@ before_install:
 jobs:
   include:
     - stage: test
-      script: python3 herramientas/validation/sqf_validator.py
-      script: python3 herramientas/validation/config_style_checker.py
-      script: python3 herramientas/validation/sqf_linter.py
+      script:
+      - python3 herramientas/validation/sqf_validator.py
+      - python3 herramientas/validation/config_style_checker.py
+      - python3 herramientas/validation/sqf_linter.py
     - stage: release
       deploy:
         provider: script
