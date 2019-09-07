@@ -1,8 +1,8 @@
 language: python
 python:
   - '3.4'
-# before_install:
-#   - pip3 install sqflint
+before_install:
+  - pip3 install sqflint
 # script:
 #   - python3 herramientas/validation/sqf_validator.py
 #   - python3 herramientas/validation/config_style_checker.py
@@ -10,8 +10,6 @@ python:
 jobs:
   include:
     - stage: test
-    before_install:
-    - pip3 install sqflint
     script:
       - python3 herramientas/validation/sqf_validator.py
       - python3 herramientas/validation/config_style_checker.py
