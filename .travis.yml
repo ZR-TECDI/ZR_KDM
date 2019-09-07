@@ -11,6 +11,6 @@ jobs:
       - python3 herramientas/validation/config_style_checker.py
       - python3 herramientas/validation/sqf_linter.py
     - stage: release
-        script:
-        - nvm install lts/*
-        - npx semantic-release
+      script:
+      - nvm install lts/*
+      - npx semantic-release
