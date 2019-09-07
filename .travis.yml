@@ -13,4 +13,6 @@ jobs:
     - stage: release
       script:
       - nvm install lts/*
+      - npm install @semantic-release/changelog -D
+      - npm install @semantic-release/git -D
       - npx semantic-release
