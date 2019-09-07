@@ -3,9 +3,17 @@ python:
   - '3.4'
 before_install:
   - pip3 install sqflint
-script:
-  - python3 herramientas/validation/sqf_validator.py
-  - python3 herramientas/validation/config_style_checker.py
-  - python3 herramientas/validation/sqf_linter.py
-after_success:
-  - python3 -m auto_changelog
+jobs:
+  include:
+    - stage: test
+    script:
+      - python3 herramientas/validation/sqf_validator.py
+      - python3 herramientas/validation/config_style_checker.py
+      - python3 herramientas/validation/sqf_linter.py
+    - stage: release
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - nvm install lts/*
+          - npx semantic-release
