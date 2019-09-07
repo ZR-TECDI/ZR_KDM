@@ -1,29 +1,18 @@
 language: python
 python:
   - '3.4'
-# before_install:
-#   - pip3 install sqflint
-# script:
-#   - python3 herramientas/validation/sqf_validator.py
-#   - python3 herramientas/validation/config_style_checker.py
-#   - python3 herramientas/validation/sqf_linter.py
+before_install:
+  - pip3 install sqflint
 jobs:
   include:
-    # - stage: test
-    # script:
-    #   - python3 herramientas/validation/sqf_validator.py
-    #   - python3 herramientas/validation/config_style_checker.py
-    #   - python3 herramietnas/validation/sqf_linter.py
-
-    # Define the release stage that runs semantic-release
+    - stage: test
+      script: python3 herramientas/validation/sqf_validator.py
+      script: python3 herramientas/validation/config_style_checker.py
+      script: python3 herramientas/validation/sqf_linter.py
     - stage: release
-      # Advanced: optionally overwrite your default `script` step to skip the tests
-      # script:
-      #   - make
       deploy:
         provider: script
         skip_cleanup: true
         script:
-          # Use nvm to install and use the Node LTS version (nvm is installed on all Travis images)
-          - nvm install lts/*
-          - npx semantic-release
+        - nvm install lts/*
+        - npx semantic-release
