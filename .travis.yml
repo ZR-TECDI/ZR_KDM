@@ -11,9 +11,6 @@ jobs:
       - python3 herramientas/validation/config_style_checker.py
       - python3 herramientas/validation/sqf_linter.py
     - stage: release
-      deploy:
-        provider: script
-        skip_cleanup: true
         script:
         - nvm install lts/*
         - npx semantic-release
