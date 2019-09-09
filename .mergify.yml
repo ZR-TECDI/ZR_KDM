@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: PR se auto-acepta cuando CI aprueba + 1 review humanas
+    conditions:
+      - status-success=Travis CI - Pull Request
+      - base=dev-branch
+      - "#approved-reviews-by>=1"
+      - "#changes-requested-reviews-by=0"
+    actions:
+      merge:
+        method: merge
