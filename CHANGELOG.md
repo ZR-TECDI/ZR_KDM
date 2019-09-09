@@ -1,3 +1,10 @@
+# [0.1.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.0.1...v0.1.0) (2019-09-09)
+
+
+### Features
+
+* **zapador:** agregada función para generar archivos básicos de misión ([0c67b4e](https://github.com/ZR-TECDI/ZR_KDM/commit/0c67b4e))
+
 # 0.0.1 (2019-09-07)
 
 
