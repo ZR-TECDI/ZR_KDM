@@ -1,12 +1,4 @@
-//Loading Screen Info
-author = "ZR Army - Dept. Tecnico y Diseño";
-OnLoadName = "TEMPLATE ZR";
-OnLoadMission = "Uso exclusivo de Zona Roja Army.";
-//loadScreen = "loadscreen.jpg";
-overviewPicture = "overview.paa";
-overviewText = "Misión template para editores.";
-
-//Gametype and settings
+#include "configurar_mision.hpp"
 
 class Header
 {
