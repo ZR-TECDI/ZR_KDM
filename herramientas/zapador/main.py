@@ -127,7 +127,7 @@ def crear_archivos(carpeta_final):
 
     AUTOR         = input('Ingresa el autor de la misión (DEFAULT: "ZR Army - Dept. Tecnico y Diseño"):\n')
     if AUTOR == "":
-        AUTOR = "ZR Army - Dept. Tecnico y Diseño"
+        AUTOR = "ZR Army - Dept. Técnico y Diseño"
 
     NOMBRE_MISION = input('Ingresa el nombre de la misión (DEFAULT: "TEMPLATE ZR"):\n')
     if NOMBRE_MISION == "":
@@ -177,65 +177,65 @@ def crear_archivos(carpeta_final):
     print("28. Utes")#.utes
     print("29. Zargabad")#.zargabad
 
-    EXT_MAPA = int(input("El número de tu elección:\n> "))
+    EXT_MAPA = input("El número de tu elección:\n> ")
 
     if EXT_MAPA == 1:
         EXT_MAPA = '.Altis'
-    elif EXT_MAPA == 2:
+    elif EXT_MAPA == '2':
         EXT_MAPA = ".Stratis"
-    elif EXT_MAPA == 3:
+    elif EXT_MAPA == '3':
         EXT_MAPA = '.Malden'
-    elif EXT_MAPA == 4:
+    elif EXT_MAPA == '4':
         EXT_MAPA = '.VR'
-    elif EXT_MAPA == 5:
+    elif EXT_MAPA == '5':
         EXT_MAPA = '.Bozcaada'
-    elif EXT_MAPA == 6:
+    elif EXT_MAPA == '6':
         EXT_MAPA = '.Bootcamp_ACR'
-    elif EXT_MAPA == 7:
+    elif EXT_MAPA == '7':
         EXT_MAPA = '.Woodland_ACR'
-    elif EXT_MAPA == 8:
+    elif EXT_MAPA == '8':
         EXT_MAPA = '.chernarus'
-    elif EXT_MAPA == 9:
+    elif EXT_MAPA == '9':
         EXT_MAPA = '.chernarus_summer'
-    elif EXT_MAPA == 10:
+    elif EXT_MAPA == '10':
         EXT_MAPA = '.Chernarus_Winter'
-    elif EXT_MAPA == 11:
+    elif EXT_MAPA == '11':
         EXT_MAPA = '.Desert_E'
-    elif EXT_MAPA == 12:
+    elif EXT_MAPA == '12':
         EXT_MAPA = '.fallujah'
-    elif EXT_MAPA == 13:
+    elif EXT_MAPA == '13':
         EXT_MAPA = '.pja310'
-    elif EXT_MAPA == 14:
+    elif EXT_MAPA == '14':
         EXT_MAPA = 'pj307'
-    elif EXT_MAPA == 15:
+    elif EXT_MAPA == '15':
         EXT_MAPA = '.MCN_HazarKot'
-    elif EXT_MAPA == 16:
+    elif EXT_MAPA == '16':
         EXT_MAPA = '.Kidal'
-    elif EXT_MAPA == 17:
+    elif EXT_MAPA == '17':
         EXT_MAPA = '.Kunduz'
-    elif EXT_MAPA == 18:
+    elif EXT_MAPA == '18':
         EXT_MAPA = '.porto'
-    elif EXT_MAPA == 19:
+    elif EXT_MAPA == '19':
         EXT_MAPA = '.ProvingGrounds_PMC'
-    elif EXT_MAPA == 20:
+    elif EXT_MAPA == '20':
         EXT_MAPA = '.intro'
-    elif EXT_MAPA == 21:
+    elif EXT_MAPA == '21':
         EXT_MAPA = 'sara'
-    elif EXT_MAPA == 22:
+    elif EXT_MAPA == '22':
         EXT_MAPA = '.saralite'
-    elif EXT_MAPA == 23:
+    elif EXT_MAPA == '23':
         EXT_MAPA = '.sara_dbe1'
-    elif EXT_MAPA == 24:
+    elif EXT_MAPA == '24':
         EXT_MAPA = '.Shapur_BAF'
-    elif EXT_MAPA == 25:
+    elif EXT_MAPA == '25':
         EXT_MAPA = '.takistan'
-    elif EXT_MAPA == 26:
+    elif EXT_MAPA == '26':
         EXT_MAPA = '.Mountains_ACR'
-    elif EXT_MAPA == 27:
+    elif EXT_MAPA == '27':
         EXT_MAPA = '.Tanoa'
-    elif EXT_MAPA == 28:
+    elif EXT_MAPA == '28':
         EXT_MAPA = '.utes'
-    elif EXT_MAPA == 29:
+    elif EXT_MAPA == '29':
         EXT_MAPA = '.zargabad'
     else:
         print('Error, la opción elegida no es válida. Usando valor DEFAULT')
@@ -289,7 +289,7 @@ def intro():
                        _____________________________________________________
                       |                                                     |
             / _____ | |                       ZAPADOR                       |
-           / /(__) || |                       v0.1.0                        |
+           / /(__) || |                       v0.2.0                        |
              _______  |                                                     |
   ________/ / |OO| || |              Escrito por: Riquelme                  |
  |         |-------|| |                                                     |
