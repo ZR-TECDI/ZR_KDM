@@ -2,8 +2,6 @@ pull_request_rules:
   - name: PR se auto-acepta cuando CI aprueba + 1 review humanas
     conditions:
       - status-success=Travis CI - Pull Request
-      - status-success=commit-lint
-      - status-succes=commit-lint-pr
       - base=dev-branch
       - "#approved-reviews-by>=1"
       - "#changes-requested-reviews-by=0"
