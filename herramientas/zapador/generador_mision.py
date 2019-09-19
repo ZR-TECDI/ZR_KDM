@@ -81,6 +81,11 @@ def escribir_foto_mision():
     
     cambiar_mapa()
 
+def escribir_datos_mision():
+    #TODO
+    """FUNCIÓN EN WIP"""
+    cambiar_mapa()
+
 def validar_nombre(nombre):
     simbolos_malos = ["!", ".", ",", '"', "ç", "=", "(", ")", "/", "\\", "$", "·", "%", "&", "?", "¡", "?", "'", "|", "@", "#", "~", "¬"]
     for simbolo in simbolos_malos:
@@ -126,8 +131,10 @@ def cambiar_mapa():
     try:
         os.rename(CARPETA_MISION, nuevo_nombre)
     except Exception as e:
+        os.system('cls')
         print(str(e))
     else:
+        os.system('cls')
         print('Misión creada con éxito, prueba abrirla desde el editor.')
         print('Carpeta: '  + nuevo_nombre)
 
