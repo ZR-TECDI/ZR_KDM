@@ -58,6 +58,13 @@ EXT_MAPA      = '.VR'
 def descarga():
     """Descarga la última versión disponible del KDM en un directorio nuevo llamado 'descargas'"""
 
+    global quiere_crear
+
+    if CONFIG_DICT['online'] == 'True':
+        quiere_crear = True
+    else:
+        quiere_crear = False
+
     if quiere_crear:
 
         print(sepa)
@@ -298,9 +305,14 @@ def set_configuracion():
             json.dump(CONFIG_DICT, fp)
     elif choice == "2":
         value = input("Ingrese nuevo valor para esta configuración: \n>")
-        CONFIG_DICT['online'] = value
-        with open (dir_script + '\zapador_config.json', 'w') as fp:
-            json.dump(CONFIG_DICT, fp)
+        if value.lower() not in ["true", "false"]:
+            print('Valor ingresado no es válido para esta configuración. Opciones: True/False')
+            os.system('pause')
+            set_configuracion()
+        else:
+            CONFIG_DICT['online'] = value.lower(). capitalize()
+            with open (dir_script + '\zapador_config.json', 'w') as fp:
+                json.dump(CONFIG_DICT, fp)
     
     os.system('cls')
     print("Configuración actualizada...")
