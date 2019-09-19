@@ -292,6 +292,7 @@ def set_configuracion():
         main()
     elif choice == "1":
         value = input("Ingrese nuevo valor para esta configuración: \n>")
+        value = value.lower().capitalize()
         CONFIG_DICT['mpmissions'] = value
         with open (dir_script + '\zapador_config.json', 'w') as fp:
             json.dump(CONFIG_DICT, fp)
