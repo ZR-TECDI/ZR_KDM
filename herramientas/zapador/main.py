@@ -249,7 +249,7 @@ def crear_archivos(carpeta_final):
     elif EXT_MAPA == '20':
         EXT_MAPA = '.intro'
     elif EXT_MAPA == '21':
-        EXT_MAPA = 'sara'
+        EXT_MAPA = '.sara'
     elif EXT_MAPA == '22':
         EXT_MAPA = '.saralite'
     elif EXT_MAPA == '23':
@@ -271,6 +271,7 @@ def crear_archivos(carpeta_final):
         EXT_MAPA = '.VR'
         os.system('pause')
 
+    os.system('cls')
     generador_mision.main(carpeta_final, AUTOR, NOMBRE_MISION, quiere_foto, FOTO_MISION, DESC_MISION, EXT_MAPA, MPMISSIONS_DIR)
 
 

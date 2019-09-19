@@ -79,11 +79,57 @@ def escribir_foto_mision():
         data = 'loadScreen = "'+FOTO_MISION+'";\n'
         escribir(data, 'a')
     
-    cambiar_mapa()
+    header_datos_mision()
 
-def escribir_datos_mision():
-    #TODO
-    """FUNCIÓN EN WIP"""
+def header_datos_mision():
+    data = """\
+\n\n/*****************************************************
+*************Datos de misión******************************
+**********************************************************/\n\n"""
+    escribir(data, 'a')
+
+    escribir_tipo_mision()
+                                                    
+def escribir_tipo_mision():
+    os.system('cls')
+    print('Tipo de misión: ')
+    print('1. Misión oficial')
+    print('2. Entrenamiento')
+    print('3. Improvisada')
+    print('4. Gala')
+    print('5. Instrucción')
+    print('6. Otro')
+    TIPO_MISION = input('Elige un tipo de misión: \n>')
+
+    if TIPO_MISION == '1':
+        TIPO_MISION = 'Misión Oficial'
+    elif TIPO_MISION == '2':
+        TIPO_MISION = 'Entrenamiento'
+    elif TIPO_MISION == '3':
+        TIPO_MISION = 'Improvisada'
+    elif TIPO_MISION == '4':
+        TIPO_MISION = 'Gala'
+    elif TIPO_MISION == '5':
+        TIPO_MISION = 'Instrucción'
+    elif TIPO_MISION == '6':
+        TIPO_MISION = 'Otro'
+    else:
+        print('Opción ingresada no es válida. Procediendo con valor default "Otro".')
+
+    data = 'TIPO_MISION = "{}";\n'.format(TIPO_MISION)
+    escribir(data, 'a')
+
+    escribir_campa()  
+
+def escribir_campa():
+    os.system('cls')
+    NOMBRE_CAMPA = input('¿Es esta misión parte de una campaña? ¿Cuál?\n Presiona enter sin ingresar nada para saltar.\n> ')
+    if NOMBRE_CAMPA == "":
+        NOMBRE_CAMPA = "--"
+    
+    data = 'NOMBRE_CAMPA = "{}";\n'.format(NOMBRE_CAMPA)
+    escribir(data, 'a')
+
     cambiar_mapa()
 
 def validar_nombre(nombre):
