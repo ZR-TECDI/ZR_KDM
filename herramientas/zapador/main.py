@@ -17,7 +17,7 @@ import json
 # globales
 primera_vez         = True
 url                 = "https://github.com/ZR-TECDI/ZR_KDM/archive/master.zip"
-quiere_crear        = False
+quiere_online        = False
 dir_script          = os.path.dirname(os.path.realpath(__file__))
 directorio_descarga = dir_script + "\\descargas"
 
@@ -58,14 +58,9 @@ EXT_MAPA      = '.VR'
 def descarga():
     """Descarga la última versión disponible del KDM en un directorio nuevo llamado 'descargas'"""
 
-    global quiere_crear
+    global quiere_online
 
-    if CONFIG_DICT['online'] == 'True':
-        quiere_crear = True
-    else:
-        quiere_crear = False
-
-    if quiere_crear:
+    if quiere_online:
 
         print(sepa)
         print("Descargando última versión estable desde: "+ url)
@@ -90,14 +85,14 @@ def descarga():
             unzip(ultimo_estable)
     else:
         print(sepa)
-        print('Modo ofline detectado, necesitarás una copia de KDM junto a este script para continuar...')
-        plantilla = dir_script + "\\template_ZR.VR"
+        print('Modo ofline detectado, necesitarás poner una copia de KDM en una carpeta llamada "descarga", junto a este ejecutable...')
+        plantilla = dir_script + "\\descarga\\template_ZR.VR"
         ruta_plantilla = Path(plantilla)
         if ruta_plantilla.exists():
-            mover_carpeta(plantilla)
+            mover_carpeta(dir_script + '\descarga')
         else:
             print('No encontramos una copia válida de KDM junto a este script.')
-            print('Si no posees una, cambia el modo online a True en el menú de cambiar configuración de Zapador.')
+            print('Recuerda crear una carpeta y llamarla "descarga" junto a el ejecutable de Zapador y poner la plantilla de KDM ahí.')
             os.system('pause')
             main()
 
@@ -115,6 +110,7 @@ def mover_carpeta(carpeta):
     """Mueve la carpeta de plantilla desde la descarga hasta la carpeta de misiones del editor"""
 
     global MPMISSIONS_DIR
+    global quiere_online
 
     os.system("cls")
     os.chdir(carpeta)
@@ -128,7 +124,10 @@ def mover_carpeta(carpeta):
         es_carpeta = os.path.isdir(i)
         if es_carpeta:
             try:
-                shutil.move(i + "\\template_ZR.VR", MPMISSIONS_DIR)
+                if quiere_online:
+                    shutil.move(i + "\\template_ZR.VR", MPMISSIONS_DIR)
+                if not quiere_online:
+                    shutil.move(i, MPMISSIONS_DIR)
             except Exception as e:
                 print("ERROR AL MOVER PLANTILLA A CARPETA DE MISIÓN: ")
                 print(str(e))
@@ -141,8 +140,7 @@ def mover_carpeta(carpeta):
 
     carpeta_final = MPMISSIONS_DIR + "\\template_ZR.VR"
 
-    if quiere_crear:
-        crear_archivos(carpeta_final)
+    crear_archivos(carpeta_final)
 
 def crear_archivos(carpeta_final):
     """Consulta al usuario una serie de datos para crear archivos de misión en base a una plantilla"""
@@ -297,7 +295,7 @@ def set_configuracion():
     choice = input("> ")
 
     if choice == "0":
-        main()
+        leer_configuracion()
     elif choice == "1":
         value = input("Ingrese nuevo valor para esta configuración: \n>")
         value = value.lower().capitalize()
@@ -364,9 +362,11 @@ def intro():
 
 def leer_configuracion():
 
-    global MPMISSIONS_DIR
     global primera_vez
+    global quiere_online
     global CONFIG_DICT
+    global MPMISSIONS_DIR
+    global CONFIG_ONLINE
 
     try: 
         with open(dir_script + "/zapador_config.json", 'r') as f:
@@ -396,12 +396,19 @@ def leer_configuracion():
         leer_configuracion()
 
     else:
+        CONFIG_ONLINE = CONFIG_DICT['online']
+        MPMISSIONS_DIR = CONFIG_DICT['mpmissions']
+
+        if CONFIG_ONLINE == 'True':
+            quiere_online = True
+        else:
+            quiere_online = False
         intro()
 
 def main():
     """Menú principal de la aplicación"""
 
-    global quiere_crear
+    global quiere_online
 
     loop = True
     while loop:
@@ -413,10 +420,6 @@ def main():
         if choice == "1":
             set_configuracion()
         if choice == "2":
-            if CONFIG_DICT['online'] == "True":
-                quiere_crear = True
-            else:
-                quiere_crear = False
             descarga()
         if choice == "3":
             olvidar_configuracion()
