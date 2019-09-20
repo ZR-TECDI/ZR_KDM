@@ -1,5 +1,6 @@
 /.vscode
 __pycache__/
 build/
+descarga/
 zapador_config.json
 mpmissions.txt
