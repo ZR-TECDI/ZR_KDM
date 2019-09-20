@@ -181,7 +181,7 @@ def cambiar_mapa():
         print(str(e))
     else:
         os.system('cls')
-        print('Misión creada con éxito, prueba abrirla desde el editor.')
+        print('Misión creada con éxito, prueba abrirla desde el editor de Arma3.\n')
         print('Carpeta: '  + nuevo_nombre)
 
     os.system('pause')
