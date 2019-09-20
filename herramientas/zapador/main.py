@@ -11,28 +11,36 @@ import zipfile
 import time
 import shutil
 from pathlib import Path
-import generador_mision 
+import generador_mision
+import json
 
 # globales
+primera_vez         = True
 url                 = "https://github.com/ZR-TECDI/ZR_KDM/archive/master.zip"
-quiere_crear        = False
+quiere_online        = False
 dir_script          = os.path.dirname(os.path.realpath(__file__))
 directorio_descarga = dir_script + "\\descargas"
-MPMISSIONS_DIR = ""
+
+CONFIG_DICT = {
+    'primera_vez': 'false',
+    'mpmissions' : '',
+    'online' : 'True'
+}
+
+CONFIG_ONLINE       = ""
+MPMISSIONS_DIR      = ""
 
 main_menu = """
     +=======================+===============================================================================+
     |        Comando        |                                  Descripción                                  |
     +=======================+===============================================================================+
-    | 1- Setear mpmissions  | Guarda la ruta a tu carpeta de misiones                                       |
+    | 1- Configurar KDM     | Cambia el comportamiento de KDM                                               |
     +-----------------------+-------------------------------------------------------------------------------+
-    | 2- Actualizar KDM     | Descarga la última versión estable de KDM y la mueve a tu carpeta de misiones |
+    | 2- Crear misión       | Mueve KDM a tu carpeta de misiones y crea archivos base por ti                |
     +-----------------------+-------------------------------------------------------------------------------+
-    | 3- Actualizar y crear | Lo mismo que la anterior, pero también crea archivos para tu nueva misión     |
+    | 3- Olvidar seteo      | Reinicia la configuración de Zapador                                          |
     +-----------------------+-------------------------------------------------------------------------------+
-    | 4- Olvidar seteo      | Olvida la dirección de tu carpeta de misiones                                 |
-    +-----------------------+-------------------------------------------------------------------------------+
-    | 5- Salir              | Cierra la aplicación                                                          |
+    | 4- Salir              | Cierra la aplicación                                                          |
     +-----------------------+-------------------------------------------------------------------------------+
 """
 sepa = """   .     .     .     .     .     .     .     .     .     .
@@ -50,27 +58,43 @@ EXT_MAPA      = '.VR'
 def descarga():
     """Descarga la última versión disponible del KDM en un directorio nuevo llamado 'descargas'"""
 
-    print(sepa)
-    print("Descargando última versión estable desde: "+ url)
+    global quiere_online
 
-    try:
-        os.mkdir(dir_script + "\\descargas")
-    except Exception as e:
-        print("ERROR AL CREAR DIRECTORIO DE DESCARGA: " + str(e))
-        os.system("pause")
-    else:
-        print("Directorio de descarga temporal creado con éxito")
-        os.chdir(dir_script + "\\descargas")
+    if quiere_online:
 
-    try:
-        ultimo_estable = urllib.request.urlretrieve(url, directorio_descarga+"\\kdm.zip")
-    except Exception as e:
-        print("ERROR AL DESCARGAR: "+ str(e))
-        os.system("pause")
+        print(sepa)
+        print("Descargando última versión estable desde: "+ url)
+
+        try:
+            os.mkdir(dir_script + "\\descargas")
+        except Exception as e:
+            print("ERROR AL CREAR DIRECTORIO DE DESCARGA: " + str(e))
+            os.system("pause")
+        else:
+            print("Directorio de descarga temporal creado con éxito")
+            os.chdir(dir_script + "\\descargas")
+
+        try:
+            ultimo_estable = urllib.request.urlretrieve(url, directorio_descarga+"\\kdm.zip")
+        except Exception as e:
+            print("ERROR AL DESCARGAR: "+ str(e))
+            os.system("pause")
+        else:
+            ultimo_estable = ultimo_estable[0]
+            print("Archivo descargado con éxito en: "+ultimo_estable)
+            unzip(ultimo_estable)
     else:
-        ultimo_estable = ultimo_estable[0]
-        print("Archivo descargado con éxito en: "+ultimo_estable)
-        unzip(ultimo_estable)
+        print(sepa)
+        print('Modo ofline detectado, necesitarás poner una copia de KDM en una carpeta llamada "descarga", junto a este ejecutable...')
+        plantilla = dir_script + "\\descarga\\template_ZR.VR"
+        ruta_plantilla = Path(plantilla)
+        if ruta_plantilla.exists():
+            mover_carpeta(dir_script + '\descarga')
+        else:
+            print('No encontramos una copia válida de KDM junto a este script.')
+            print('Recuerda crear una carpeta y llamarla "descarga" junto a el ejecutable de Zapador y poner la plantilla de KDM ahí.')
+            os.system('pause')
+            main()
 
 
 def unzip(archivo):
@@ -86,6 +110,7 @@ def mover_carpeta(carpeta):
     """Mueve la carpeta de plantilla desde la descarga hasta la carpeta de misiones del editor"""
 
     global MPMISSIONS_DIR
+    global quiere_online
 
     os.system("cls")
     os.chdir(carpeta)
@@ -99,7 +124,10 @@ def mover_carpeta(carpeta):
         es_carpeta = os.path.isdir(i)
         if es_carpeta:
             try:
-                shutil.move(i + "\\template_ZR.VR", MPMISSIONS_DIR)
+                if quiere_online:
+                    shutil.move(i + "\\template_ZR.VR", MPMISSIONS_DIR)
+                if not quiere_online:
+                    shutil.move(i, MPMISSIONS_DIR)
             except Exception as e:
                 print("ERROR AL MOVER PLANTILLA A CARPETA DE MISIÓN: ")
                 print(str(e))
@@ -112,8 +140,7 @@ def mover_carpeta(carpeta):
 
     carpeta_final = MPMISSIONS_DIR + "\\template_ZR.VR"
 
-    if quiere_crear:
-        crear_archivos(carpeta_final)
+    crear_archivos(carpeta_final)
 
 def crear_archivos(carpeta_final):
     """Consulta al usuario una serie de datos para crear archivos de misión en base a una plantilla"""
@@ -127,7 +154,7 @@ def crear_archivos(carpeta_final):
 
     AUTOR         = input('Ingresa el autor de la misión (DEFAULT: "ZR Army - Dept. Tecnico y Diseño"):\n')
     if AUTOR == "":
-        AUTOR = "ZR Army - Dept. Tecnico y Diseño"
+        AUTOR = "ZR Army - Dept. Técnico y Diseño"
 
     NOMBRE_MISION = input('Ingresa el nombre de la misión (DEFAULT: "TEMPLATE ZR"):\n')
     if NOMBRE_MISION == "":
@@ -177,119 +204,147 @@ def crear_archivos(carpeta_final):
     print("28. Utes")#.utes
     print("29. Zargabad")#.zargabad
 
-    EXT_MAPA = int(input("El número de tu elección:\n> "))
+    EXT_MAPA = input("El número de tu elección:\n> ")
 
-    if EXT_MAPA == 1:
+    if EXT_MAPA == '1':
         EXT_MAPA = '.Altis'
-    elif EXT_MAPA == 2:
+    elif EXT_MAPA == '2':
         EXT_MAPA = ".Stratis"
-    elif EXT_MAPA == 3:
+    elif EXT_MAPA == '3':
         EXT_MAPA = '.Malden'
-    elif EXT_MAPA == 4:
+    elif EXT_MAPA == '4':
         EXT_MAPA = '.VR'
-    elif EXT_MAPA == 5:
+    elif EXT_MAPA == '5':
         EXT_MAPA = '.Bozcaada'
-    elif EXT_MAPA == 6:
+    elif EXT_MAPA == '6':
         EXT_MAPA = '.Bootcamp_ACR'
-    elif EXT_MAPA == 7:
+    elif EXT_MAPA == '7':
         EXT_MAPA = '.Woodland_ACR'
-    elif EXT_MAPA == 8:
+    elif EXT_MAPA == '8':
         EXT_MAPA = '.chernarus'
-    elif EXT_MAPA == 9:
+    elif EXT_MAPA == '9':
         EXT_MAPA = '.chernarus_summer'
-    elif EXT_MAPA == 10:
+    elif EXT_MAPA == '10':
         EXT_MAPA = '.Chernarus_Winter'
-    elif EXT_MAPA == 11:
+    elif EXT_MAPA == '11':
         EXT_MAPA = '.Desert_E'
-    elif EXT_MAPA == 12:
+    elif EXT_MAPA == '12':
         EXT_MAPA = '.fallujah'
-    elif EXT_MAPA == 13:
+    elif EXT_MAPA == '13':
         EXT_MAPA = '.pja310'
-    elif EXT_MAPA == 14:
-        EXT_MAPA = 'pj307'
-    elif EXT_MAPA == 15:
+    elif EXT_MAPA == '14':
+        EXT_MAPA = '.pj307'
+    elif EXT_MAPA == '15':
         EXT_MAPA = '.MCN_HazarKot'
-    elif EXT_MAPA == 16:
+    elif EXT_MAPA == '16':
         EXT_MAPA = '.Kidal'
-    elif EXT_MAPA == 17:
+    elif EXT_MAPA == '17':
         EXT_MAPA = '.Kunduz'
-    elif EXT_MAPA == 18:
+    elif EXT_MAPA == '18':
         EXT_MAPA = '.porto'
-    elif EXT_MAPA == 19:
+    elif EXT_MAPA == '19':
         EXT_MAPA = '.ProvingGrounds_PMC'
-    elif EXT_MAPA == 20:
+    elif EXT_MAPA == '20':
         EXT_MAPA = '.intro'
-    elif EXT_MAPA == 21:
-        EXT_MAPA = 'sara'
-    elif EXT_MAPA == 22:
+    elif EXT_MAPA == '21':
+        EXT_MAPA = '.sara'
+    elif EXT_MAPA == '22':
         EXT_MAPA = '.saralite'
-    elif EXT_MAPA == 23:
+    elif EXT_MAPA == '23':
         EXT_MAPA = '.sara_dbe1'
-    elif EXT_MAPA == 24:
+    elif EXT_MAPA == '24':
         EXT_MAPA = '.Shapur_BAF'
-    elif EXT_MAPA == 25:
+    elif EXT_MAPA == '25':
         EXT_MAPA = '.takistan'
-    elif EXT_MAPA == 26:
+    elif EXT_MAPA == '26':
         EXT_MAPA = '.Mountains_ACR'
-    elif EXT_MAPA == 27:
+    elif EXT_MAPA == '27':
         EXT_MAPA = '.Tanoa'
-    elif EXT_MAPA == 28:
+    elif EXT_MAPA == '28':
         EXT_MAPA = '.utes'
-    elif EXT_MAPA == 29:
+    elif EXT_MAPA == '29':
         EXT_MAPA = '.zargabad'
     else:
-        print('Error, la opción elegida no es válida. Usando valor DEFAULT')
+        print('Error, la opción elegida no es válida. Usando valor DEFAULT (Realidad virtual)')
+        EXT_MAPA = '.VR'
         os.system('pause')
 
+    os.system('cls')
     generador_mision.main(carpeta_final, AUTOR, NOMBRE_MISION, quiere_foto, FOTO_MISION, DESC_MISION, EXT_MAPA, MPMISSIONS_DIR)
 
 
-def set_mpmission():
+def set_configuracion():
     """Crea o sobrescribe el archivo desde el que se toma la ruta a la carpeta de misiones"""
 
     global MPMISSIONS_DIR
+    global CONFIG_ONLINE
+    global CONFIG_DICT
+
     os.system("cls")
-    print("Busca la ruta a tu carpeta de misiones, debería verse algo así: ")
-    print("C:\TU-USUARIO\Documents\Arma 3 - Other Profiles\TU-PERFIL-DE-ARMA\mpmissions")
+    with open(dir_script + '\zapador_config.json', 'r') as fp:
+        CONFIG_DICT = json.load(fp)
+
+    MPMISSIONS_DIR = CONFIG_DICT['mpmissions']
+    CONFIG_ONLINE = CONFIG_DICT['online']
+
+    print("1. Carpeta de misión : {}".format(MPMISSIONS_DIR))
+    print("2. Descargar siempre última versión : {}".format(CONFIG_ONLINE))
+    print("0. Volver al menú principal")
     print()
-    MPMISSIONS_DIR = input("Ingresa la ruta ahora: ")
-    with open(dir_script+"/mpmissions.txt", 'w') as f:
-        f.write(MPMISSIONS_DIR)
-    main()
+    print("¿Qué configuración quieres cambiar?")
+    choice = input("> ")
+
+    if choice == "0":
+        leer_configuracion()
+    elif choice == "1":
+        value = input("Ingrese nuevo valor para esta configuración: \n>")
+        value = value.lower().capitalize()
+        CONFIG_DICT['mpmissions'] = value
+        with open (dir_script + '\zapador_config.json', 'w') as fp:
+            json.dump(CONFIG_DICT, fp)
+    elif choice == "2":
+        value = input("Ingrese nuevo valor para esta configuración: \n>")
+        if value.lower() not in ["true", "false"]:
+            print('Valor ingresado no es válido para esta configuración. Opciones: True/False')
+            os.system('pause')
+            set_configuracion()
+        else:
+            CONFIG_DICT['online'] = value.lower(). capitalize()
+            with open (dir_script + '\zapador_config.json', 'w') as fp:
+                json.dump(CONFIG_DICT, fp)
+    
+    os.system('cls')
+    print("Configuración actualizada...")
+    os.system('pause')
+    set_configuracion()
 
 
-def olvidar_mpmissions():
+def olvidar_configuracion():
     """Elimina el archivo desde donde se toma la carpeta de misiones"""
 
     os.system("cls")
     try:
-        os.remove(dir_script + "/mpmissions.txt")
+        os.remove(dir_script + "/zapador_config.json")
     except Exception as e:
-        print("ERROR AL INTENTAR ELIMINAR DATO: ")
+        print("ERROR AL INTENTAR ELIMINAR CONFIGURACIÓN: ")
         print(str(e))
     else:
-        print("Dato eliminado con éxito")
+        print("Configuración eliminada con éxito")
     finally:
         os.system("pause")
-
+    
+    leer_configuracion()
 
 def intro():
     """Presenta la aplicación con su versión y créditos"""
 
-    global MPMISSIONS_DIR
-
-    try: 
-        with open(dir_script + "/mpmissions.txt", 'r') as f:
-            MPMISSIONS_DIR = f.readline()
-    except:
-        pass
-
+    os.system('cls')
     print()
     print("""
                        _____________________________________________________
                       |                                                     |
             / _____ | |                       ZAPADOR                       |
-           / /(__) || |                       v0.1.0                        |
+           / /(__) || |                       v0.2.0                        |
              _______  |                                                     |
   ________/ / |OO| || |              Escrito por: Riquelme                  |
  |         |-------|| |                                                     |
@@ -302,20 +357,58 @@ def intro():
 
     """)
     print()
-    if MPMISSIONS_DIR == "":
-        print("Carpeta de misión sin setear")
-    else:
-        print("Carpeta de misión: "+ MPMISSIONS_DIR)
-    time.sleep(2)
-    os.system("pause")
-    os.system("cls")
+    os.system('pause')
     main()
 
+def leer_configuracion():
+
+    global primera_vez
+    global quiere_online
+    global CONFIG_DICT
+    global MPMISSIONS_DIR
+    global CONFIG_ONLINE
+
+    try: 
+        with open(dir_script + "/zapador_config.json", 'r') as f:
+            CONFIG_DICT = json.load(f)
+            primera_vez = CONFIG_DICT['primera_vez']
+    except:
+        primera_vez = True
+    else:
+        primera_vez = False
+
+    if primera_vez:
+        os.system('cls')
+        print("Bienvenido a Zapador.\n")
+        print("Este programa fue diseñado con la intención de facilitar el pie inicial a la creación de misiones.")
+        print("A continuación, necesitamos que nos des algo de información para configurar todo.\n")
+        print()
+        print("Busca la ruta a tu carpeta de misiones, debería verse algo así: ")
+        print("C:\\Users\TU-USUARIO\Documents\Arma 3 - Other Profiles\TU-PERFIL-DE-ARMA\mpmissions")
+        MPMISSIONS_DIR = input("Ingresa la ruta ahora: ")
+        CONFIG_DICT['mpmissions'] = MPMISSIONS_DIR
+        primera_vez = False
+        data = json.dumps(CONFIG_DICT)
+
+        with open (dir_script+'\zapador_config.json', 'w')as f:
+            f.write(data)
+            CONFIG_DICT = json.loads(data)
+        leer_configuracion()
+
+    else:
+        CONFIG_ONLINE = CONFIG_DICT['online']
+        MPMISSIONS_DIR = CONFIG_DICT['mpmissions']
+
+        if CONFIG_ONLINE == 'True':
+            quiere_online = True
+        else:
+            quiere_online = False
+        intro()
 
 def main():
     """Menú principal de la aplicación"""
 
-    global quiere_crear
+    global quiere_online
 
     loop = True
     while loop:
@@ -325,17 +418,14 @@ def main():
         choice = input("> ")
 
         if choice == "1":
-            set_mpmission()
+            set_configuracion()
         if choice == "2":
             descarga()
         if choice == "3":
-            quiere_crear = True
-            descarga()
+            olvidar_configuracion()
         if choice == "4":
-            olvidar_mpmissions()
-        if choice == "5":
             loop = False
             quit()
 
 if __name__ == "__main__":
-	intro()
+	leer_configuracion()

@@ -1,5 +1,8 @@
 /.vscode
 __pycache__/
 build/
-settings.json
+dist/
+*.spec
+descarga/
+zapador_config.json
 mpmissions.txt

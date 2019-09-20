@@ -1,1 +1,0 @@
-start %cd%\herramientas\zapador\dist\main\main.exe
