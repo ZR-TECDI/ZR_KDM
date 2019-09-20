@@ -267,7 +267,7 @@ def crear_archivos(carpeta_final):
     elif EXT_MAPA == '29':
         EXT_MAPA = '.zargabad'
     else:
-        print('Error, la opción elegida no es válida. Usando valor DEFAULT')
+        print('Error, la opción elegida no es válida. Usando valor DEFAULT (Realidad virtual)')
         EXT_MAPA = '.VR'
         os.system('pause')
 
