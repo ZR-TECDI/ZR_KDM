@@ -235,7 +235,7 @@ def crear_archivos(carpeta_final):
     elif EXT_MAPA == '13':
         EXT_MAPA = '.pja310'
     elif EXT_MAPA == '14':
-        EXT_MAPA = 'pj307'
+        EXT_MAPA = '.pj307'
     elif EXT_MAPA == '15':
         EXT_MAPA = '.MCN_HazarKot'
     elif EXT_MAPA == '16':
@@ -392,8 +392,8 @@ def leer_configuracion():
 
         with open (dir_script+'\zapador_config.json', 'w')as f:
             f.write(data)
-            intro()
-        CONFIG_DICT = json.loads(data)
+            CONFIG_DICT = json.loads(data)
+        leer_configuracion()
 
     else:
         intro()
