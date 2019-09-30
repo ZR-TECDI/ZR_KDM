@@ -29,12 +29,12 @@ if (TIPO_MISION isEqualTo "CAMPANA") then{
 ES_OFICIAL = getMissionConfigValue "es_oficial";
 MAPA_MISION   = worldName;
 
-diag_log format["%1: NOMBRE_MISION = %2", prefix, NOMBRE_MISION];
-diag_log format["%1: DESC_MISION = %2", prefix, DESC_MISION];
-diag_log format["%1: AUTOR_MISION = %2", prefix, AUTOR_MISION];
-diag_log format["%1: TIPO_MISION = %2", prefix, NOMBRE_MISION];
+diag_log format["%1: NOMBRE_MISION %2", prefix, NOMBRE_MISION];
+diag_log format["%1: DESC_MISION %2", prefix, DESC_MISION];
+diag_log format["%1: AUTOR_MISION %2", prefix, AUTOR_MISION];
+diag_log format["%1: TIPO_MISION %2", prefix, NOMBRE_MISION];
 if (!isNil "NOMBRE_CAMPA") then {
-	diag_log format["%1: NOMBRE_CAMPA = %2", prefix, NOMBRE_CAMPA];
+	diag_log format["%1: NOMBRE_CAMPA %2", prefix, NOMBRE_CAMPA];
 };
-diag_log format["%1: ES_OFICIAL = %2", prefix, ES_OFICIAL];
-diag_log format["%1: MAPA_MISION = %2", prefix, MAPA_MISION];
+diag_log format["%1: ES_OFICIAL %2", prefix, ES_OFICIAL];
+diag_log format["%1: MAPA_MISION %2", prefix, MAPA_MISION];
