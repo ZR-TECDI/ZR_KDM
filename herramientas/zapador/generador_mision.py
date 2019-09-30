@@ -24,7 +24,7 @@ TIPO_MISION = 'OTRO'
 def escribir(data, mode):
     archivo_mision = CARPETA_MISION + "\\configurar_mision.hpp"
     try:
-        with open(archivo_mision, mode) as f:
+        with open(archivo_mision, mode, encoding= 'UTF-8') as f:
             f.write(data)
     except BaseException as e:
         print(e)
@@ -137,7 +137,8 @@ def escribir_tipo_mision():
 
     if TIPO_MISION == 'CAMPANA':
         escribir_campa()
-    escribir_datos_extras()
+    else:
+        escribir_datos_extras()
 
 
 def escribir_campa():
