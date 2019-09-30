@@ -16,6 +16,7 @@ class CfgFunctions{
         class helper{
             file = "helper";
 
+            class escribirDatosDeMision {preInit = 1};
             class encontrarObjetosPorVariable {};
         };
     };    
