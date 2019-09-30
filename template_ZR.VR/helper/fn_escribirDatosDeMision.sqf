@@ -15,7 +15,7 @@
     Pública: No
  */
 
-prefix = "zrstats";
+prefix = "ZRSTATS";
 
 NOMBRE_MISION = getMissionConfigValue "onLoadName";
 DESC_MISION   = getMissionConfigValue "OnLoadMission";
