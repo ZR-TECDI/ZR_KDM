@@ -85,14 +85,14 @@ def descarga():
             unzip(ultimo_estable)
     else:
         print(sepa)
-        print('Modo ofline detectado, necesitarás poner una copia de KDM en una carpeta llamada "descarga", junto a este ejecutable...')
-        plantilla = dir_script + "\\descarga\\template_ZR.VR"
+        print('Modo ofline detectado, necesitarás poner una copia de KDM en una carpeta llamada "plantilla", junto a este ejecutable...')
+        plantilla = dir_script + "\\plantilla\\template_ZR.VR"
         ruta_plantilla = Path(plantilla)
         if ruta_plantilla.exists():
-            mover_carpeta(dir_script + '\descarga')
+            mover_carpeta(dir_script + '\plantilla')
         else:
             print('No encontramos una copia válida de KDM junto a este script.')
-            print('Recuerda crear una carpeta y llamarla "descarga" junto a el ejecutable de Zapador y poner la plantilla de KDM ahí.')
+            print('Recuerda crear una carpeta y llamarla "plantilla" junto a el ejecutable de Zapador y poner la carpeta de KDM dentro.')
             os.system('pause')
             main()
 
