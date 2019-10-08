@@ -1,3 +1,18 @@
+# [0.3.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.2.0...v0.3.0) (2019-10-08)
+
+
+### Bug Fixes
+
+* **kdm:** Eliminadas las malvadas tabs ([8e03405](https://github.com/ZR-TECDI/ZR_KDM/commit/8e03405))
+* **zapador:** corregido error que hacía llamar dos veces la misma función ([1eadbf0](https://github.com/ZR-TECDI/ZR_KDM/commit/1eadbf0))
+
+
+### Features
+
+* **kdm:** Nueva función para imprimir datos de misión en el RPT ([85669fd](https://github.com/ZR-TECDI/ZR_KDM/commit/85669fd))
+* **zapador:** agregada función para tomar eventos de conexión y desconexión de jugadores ([3922d65](https://github.com/ZR-TECDI/ZR_KDM/commit/3922d65))
+* **zapador:** nuevo binario de zapador ([d85b17e](https://github.com/ZR-TECDI/ZR_KDM/commit/d85b17e))
+
 # [0.2.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.1.0...v0.2.0) (2019-09-20)
 
 
