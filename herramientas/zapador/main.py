@@ -203,6 +203,7 @@ def crear_archivos(carpeta_final):
     print("27. Tanoa")#.Tanoa
     print("28. Utes")#.utes
     print("29. Zargabad")#.zargabad
+    print('30. Prei (Camboya)')#.prei_khmaoch_luong
 
     EXT_MAPA = input("El número de tu elección:\n> ")
 
@@ -264,6 +265,8 @@ def crear_archivos(carpeta_final):
         EXT_MAPA = '.utes'
     elif EXT_MAPA == '29':
         EXT_MAPA = '.zargabad'
+    elif EXT_MAPA == '30':
+        EXT_MAPA = '.prei_khmaoch_luong'
     else:
         print('Error, la opción elegida no es válida. Usando valor DEFAULT (Realidad virtual)')
         EXT_MAPA = '.VR'
