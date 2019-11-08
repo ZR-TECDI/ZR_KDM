@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.3.0...v0.4.0) (2019-11-08)
+
+
+### Features
+
+* **zapador:** Agregado Prei a la lista de mapas ([97e5d20](https://github.com/ZR-TECDI/ZR_KDM/commit/97e5d20c2dacd95586b4c66d60a99659e16cecd3))
+
 # [0.3.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.2.0...v0.3.0) (2019-10-08)
 
 
