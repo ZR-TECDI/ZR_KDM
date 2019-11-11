@@ -6,7 +6,7 @@ from subprocess import Popen, CREATE_NEW_CONSOLE
 
 
 dir_script = os.path.dirname(os.path.realpath(sys.argv[0]))
-url = "https://github.com/ZR-TECDI/ZR_KDM/raw/master/zapdor.exe"
+url = "https://github.com/ZR-TECDI/ZR_KDM/raw/master/main.exe"
 #Espero un segundo pa que se haya cerrado el otro programa
 time.sleep(0.3)
 
