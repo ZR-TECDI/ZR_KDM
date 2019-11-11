@@ -1,3 +1,15 @@
+# [0.5.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.4.0...v0.5.0) (2019-11-11)
+
+
+### Bug Fixes
+
+* **zapador:** corrección de dirección para auto-update ([3c5bcd9](https://github.com/ZR-TECDI/ZR_KDM/commit/3c5bcd978831faa262206c580d13d9bec19887ba))
+
+
+### Features
+
+* **zapador:** Nueva característica de auto update ([18a4673](https://github.com/ZR-TECDI/ZR_KDM/commit/18a46733e00a901ef9c927186e1601049f619e1a))
+
 # [0.4.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.3.0...v0.4.0) (2019-11-08)
 
 
