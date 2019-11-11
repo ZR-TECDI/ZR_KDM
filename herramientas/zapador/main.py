@@ -23,9 +23,8 @@ from subprocess import Popen, CREATE_NEW_CONSOLE
 VERSION = versionado.version
 
 primera_vez         = True
-url                 = "https://github.com/ZR-TECDI/ZR_KDM/archive/master.zip"
-quiere_online        = False
 branch = 'master'
+quiere_online        = False
 dir_script          = os.path.dirname(os.path.realpath(sys.argv[0]))
 directorio_descarga = dir_script + "\\descargas"
 
@@ -70,10 +69,12 @@ def descarga():
 
     global quiere_online
 
+    url = "https://github.com/ZR-TECDI/ZR_KDM/archive/{}.zip".format(branch)
+
     if quiere_online:
 
         print(sepa)
-        print("Descargando última versión estable desde: "+ url)
+        print("Descargando última versión de KDM desde: "+ url)
 
         try:
             os.mkdir(dir_script + "\\descargas")

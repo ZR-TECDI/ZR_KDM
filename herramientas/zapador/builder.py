@@ -18,5 +18,6 @@ def build_all():
 
 if __name__ == "__main__":
     build_all()
-    shutil.move(dir_script+'/dist/zapador.exe', dir_script)
-    shutil.move(dir_script+'/dist/auto_update.exe', dir_script)
+    src = dir_script+"/dist"
+    shutil.move(os.path.join(src, 'zapador.exe'), os.path.join(dir_script, 'zapador.exe'))
+    shutil.move(os.path.join(src, 'auto_update.exe'), os.path.join(dir_script, 'auto_update.exe'))
