@@ -3,10 +3,19 @@ import time
 import sys
 import urllib.request
 from subprocess import Popen, CREATE_NEW_CONSOLE
-
+import json
 
 dir_script = os.path.dirname(os.path.realpath(sys.argv[0]))
-url = "https://github.com/ZR-TECDI/ZR_KDM/raw/master/main.exe"
+
+try:
+    with open(dir_script + '/zapador_config.json') as f:
+        CONFIG_DICT = json.load(f)
+    branch = CONFIG_DICT['branch']
+
+except Exception as e:
+    print(str(e))
+
+url = "https://github.com/ZR-TECDI/ZR_KDM/raw/{}/herramientas/zapador/main.exe".format(branch)
 #Espero un segundo pa que se haya cerrado el otro programa
 time.sleep(0.3)
 
@@ -19,5 +28,5 @@ else:
     print('Última versión descargada con éxito')
 finally:
     os.system('pause')
-    Popen(dir_script+'/main.exe', creationflags=CREATE_NEW_CONSOLE)
+    Popen(dir_script+'/zapador.exe', creationflags=CREATE_NEW_CONSOLE)
     quit()
