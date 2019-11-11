@@ -15,7 +15,7 @@ try:
 except Exception as e:
     print(str(e))
 
-url = "https://github.com/ZR-TECDI/ZR_KDM/raw/{}/herramientas/zapador/main.exe".format(branch)
+url = "https://github.com/ZR-TECDI/ZR_KDM/raw/{}/herramientas/zapador/zapador.exe".format(branch)
 #Espero un segundo pa que se haya cerrado el otro programa
 time.sleep(0.3)
 

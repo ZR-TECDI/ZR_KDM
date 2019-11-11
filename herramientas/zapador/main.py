@@ -444,14 +444,16 @@ def auto_update():
     try:
         url = "https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/versionado.py".format(branch)
         req = requests.get(url)
-        estable = req.text
+        estable = req.text.replace('"','')
+        estable = estable.replace('version=','')
+
 
         if req.ok:
             if version.parse(VERSION) >= version.parse(estable):
                 intro()
             else:
                 print('Hay una nueva versión en línea. Actualizando...')
-                print('Última versión estable' + estable + '|| Versión en uso: '+ VERSION)
+                print('Última versión estable: ' + estable + ' || Versión en uso: '+ VERSION)
                 os.system('pause')
                 Popen(dir_script + '/auto_update.exe', creationflags=CREATE_NEW_CONSOLE)
                 quit()
