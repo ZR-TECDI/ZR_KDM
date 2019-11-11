@@ -6,26 +6,35 @@ generar archivos para una nueva misión"""
  
 # imports
 import urllib.request
+import requests
 import os
+import sys
 import zipfile
 import time
 import shutil
 from pathlib import Path
 import generador_mision
+import versionado
 import json
+from packaging import version
+from subprocess import Popen, CREATE_NEW_CONSOLE
 
 # globales
+VERSION = versionado.version
+
 primera_vez         = True
-url                 = "https://github.com/ZR-TECDI/ZR_KDM/archive/master.zip"
+branch = 'master'
 quiere_online        = False
-dir_script          = os.path.dirname(os.path.realpath(__file__))
+dir_script          = os.path.dirname(os.path.realpath(sys.argv[0]))
 directorio_descarga = dir_script + "\\descargas"
 
 CONFIG_DICT = {
     'primera_vez': 'false',
     'mpmissions' : '',
-    'online' : 'True'
+    'online' : 'True',
+    'branch' : 'master'
 }
+
 
 CONFIG_ONLINE       = ""
 MPMISSIONS_DIR      = ""
@@ -60,10 +69,12 @@ def descarga():
 
     global quiere_online
 
+    url = "https://github.com/ZR-TECDI/ZR_KDM/archive/{}.zip".format(branch)
+
     if quiere_online:
 
         print(sepa)
-        print("Descargando última versión estable desde: "+ url)
+        print("Descargando última versión de KDM desde: "+ url)
 
         try:
             os.mkdir(dir_script + "\\descargas")
@@ -282,6 +293,7 @@ def set_configuracion():
     global MPMISSIONS_DIR
     global CONFIG_ONLINE
     global CONFIG_DICT
+    global branch
 
     os.system("cls")
     with open(dir_script + '\zapador_config.json', 'r') as fp:
@@ -292,6 +304,7 @@ def set_configuracion():
 
     print("1. Carpeta de misión : {}".format(MPMISSIONS_DIR))
     print("2. Descargar siempre última versión : {}".format(CONFIG_ONLINE))
+    print("3. Versión: {}".format(branch))
     print("0. Volver al menú principal")
     print()
     print("¿Qué configuración quieres cambiar?")
@@ -299,6 +312,7 @@ def set_configuracion():
 
     if choice == "0":
         leer_configuracion()
+        return 0
     elif choice == "1":
         value = input("Ingrese nuevo valor para esta configuración: \n>")
         value = value.lower().capitalize()
@@ -315,7 +329,18 @@ def set_configuracion():
             CONFIG_DICT['online'] = value.lower(). capitalize()
             with open (dir_script + '\zapador_config.json', 'w') as fp:
                 json.dump(CONFIG_DICT, fp)
-    
+    elif choice == "3":
+        value = input("Ingresa qué branch quieres usar (experto): \n>")
+        if value.lower() not in ["master", "dev-branch"]:
+            print('Valor ingresado no es válido para esta configuración. Opciones: master/dev-branch\n')
+            os.system('pause')
+            set_configuracion()
+        else:
+            branch = value.lower()
+            CONFIG_DICT['branch'] = value.lower()
+            with open (dir_script + '\zapador_config.json', 'w') as fp:
+                json.dump(CONFIG_DICT, fp)
+
     os.system('cls')
     print("Configuración actualizada...")
     os.system('pause')
@@ -347,7 +372,7 @@ def intro():
                        _____________________________________________________
                       |                                                     |
             / _____ | |                       ZAPADOR                       |
-           / /(__) || |                       v0.2.0                        |
+           / /(__) || |                       v{}                        |
              _______  |                                                     |
   ________/ / |OO| || |              Escrito por: Riquelme                  |
  |         |-------|| |                                                     |
@@ -358,7 +383,7 @@ def intro():
    | () |                 | () |   | () |                  | () |    | () |
     \__/                   \__/     \__/                    \__/      \__/
 
-    """)
+    """.format(VERSION))
     print()
     os.system('pause')
     main()
@@ -367,6 +392,7 @@ def leer_configuracion():
 
     global primera_vez
     global quiere_online
+    global branch
     global CONFIG_DICT
     global MPMISSIONS_DIR
     global CONFIG_ONLINE
@@ -400,13 +426,42 @@ def leer_configuracion():
 
     else:
         CONFIG_ONLINE = CONFIG_DICT['online']
+        branch = CONFIG_DICT['branch']
         MPMISSIONS_DIR = CONFIG_DICT['mpmissions']
 
         if CONFIG_ONLINE == 'True':
             quiere_online = True
+            auto_update()
         else:
             quiere_online = False
-        intro()
+            intro()
+
+def auto_update():
+    """Compara la versión del programa con la última publicada y actualiza si es menor"""
+    global VERSION
+    global branch
+
+    try:
+        url = "https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/versionado.py".format(branch)
+        req = requests.get(url)
+        estable = req.text.replace('"','')
+        estable = estable.replace('version=','')
+
+
+        if req.ok:
+            if version.parse(VERSION) >= version.parse(estable):
+                intro()
+            else:
+                print('Hay una nueva versión en línea. Actualizando...')
+                print('Última versión estable: ' + estable + ' || Versión en uso: '+ VERSION)
+                os.system('pause')
+                Popen(dir_script + '/auto_update.exe', creationflags=CREATE_NEW_CONSOLE)
+                quit()
+                
+        else:
+            intro()
+    except:
+        pass
 
 def main():
     """Menú principal de la aplicación"""
@@ -428,7 +483,7 @@ def main():
             olvidar_configuracion()
         if choice == "4":
             loop = False
-            quit()
+            sys.exit()
 
 if __name__ == "__main__":
 	leer_configuracion()
