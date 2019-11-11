@@ -6,19 +6,26 @@ generar archivos para una nueva misión"""
  
 # imports
 import urllib.request
+import requests
 import os
+import sys
 import zipfile
 import time
 import shutil
 from pathlib import Path
 import generador_mision
+import versionado
 import json
+from packaging import version
+from subprocess import Popen, CREATE_NEW_CONSOLE
 
 # globales
+VERSION = versionado.version
+
 primera_vez         = True
 url                 = "https://github.com/ZR-TECDI/ZR_KDM/archive/master.zip"
 quiere_online        = False
-dir_script          = os.path.dirname(os.path.realpath(__file__))
+dir_script          = os.path.dirname(os.path.realpath(sys.argv[0]))
 directorio_descarga = dir_script + "\\descargas"
 
 CONFIG_DICT = {
@@ -347,7 +354,7 @@ def intro():
                        _____________________________________________________
                       |                                                     |
             / _____ | |                       ZAPADOR                       |
-           / /(__) || |                       v0.2.0                        |
+           / /(__) || |                       v{}                        |
              _______  |                                                     |
   ________/ / |OO| || |              Escrito por: Riquelme                  |
  |         |-------|| |                                                     |
@@ -358,7 +365,7 @@ def intro():
    | () |                 | () |   | () |                  | () |    | () |
     \__/                   \__/     \__/                    \__/      \__/
 
-    """)
+    """.format(VERSION))
     print()
     os.system('pause')
     main()
@@ -404,10 +411,35 @@ def leer_configuracion():
 
         if CONFIG_ONLINE == 'True':
             quiere_online = True
+            auto_update()
         else:
             quiere_online = False
-        intro()
+            intro()
 
+def auto_update():
+    """Compara la versión del programa con la última publicada y actualiza si es menor"""
+    global VERSION
+
+    try:
+        url = "https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/master/herramientas/zapador/versionado.py"
+        req = requests.get(url)
+        estable = req.text
+
+        if req.ok:
+            if version.parse(VERSION) >= version.parse(estable):
+                intro()
+            else:
+                print('Hay una nueva versión en línea. Actualizando...')
+                print('Última versión estable' + estable + '|| Versión en uso: '+ VERSION)
+                os.system('pause')
+                Popen(dir_script + '/auto_update.exe', creationflags=CREATE_NEW_CONSOLE)
+                quit()
+                
+        else:
+            intro()
+    except:
+        pass
+    
 def main():
     """Menú principal de la aplicación"""
 
@@ -428,7 +460,7 @@ def main():
             olvidar_configuracion()
         if choice == "4":
             loop = False
-            quit()
+            sys.exit()
 
 if __name__ == "__main__":
 	leer_configuracion()
