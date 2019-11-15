@@ -8,7 +8,7 @@ class EditorData
 	toggles=1025;
 	class ItemIDProvider
 	{
-		nextID=134;
+		nextID=142;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={4392.103,30,3861.9709};
-		dir[]={-0.39969641,-0.40133846,0.82412028};
-		up[]={-0.17513749,0.91592896,0.36110979};
-		aside[]={0.89976281,3.4007826e-008,0.43638292};
+		pos[]={4351.4336,25.693466,4075.9751};
+		dir[]={0.46250039,-0.66405952,0.58758712};
+		up[]={0.41073054,0.74765539,0.52181423};
+		aside[]={0.78584152,5.3667463e-007,-0.61855263};
 	};
 };
 binarizationWanted=0;
@@ -435,7 +435,7 @@ class CustomAttributes
 		};
 		nAttributes=2;
 	};
-	class Category1
+	class Category2
 	{
 		name="Multiplayer";
 		class Attribute0
@@ -475,68 +475,6 @@ class CustomAttributes
 			};
 		};
 		nAttributes=1;
-	};
-	class Category2
-	{
-		name="Scenario";
-		class Attribute0
-		{
-			property="Enh_ambientFlyby_speed";
-			expression="missionNamespace setVariable ['Enh_AmbientFlyby_Speed',_value]";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"STRING"
-						};
-					};
-					value="normal";
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="Enh_Airdrop_Condition";
-			expression="if (isServer) then {missionNamespace setVariable ['Enh_Airdrop_Condition',_value]}";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"STRING"
-						};
-					};
-					value="false";
-				};
-			};
-		};
-		class Attribute2
-		{
-			property="Enh_Airdrop_Side";
-			expression="if (isServer) then {missionNamespace setVariable ['Enh_Airdrop_Side',_value]}";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"STRING"
-						};
-					};
-					value="WEST";
-				};
-			};
-		};
-		nAttributes=3;
 	};
 };
 class Mission
@@ -787,75 +725,6 @@ class Mission
 						};
 						class Attribute8
 						{
-							property="Enh_ambientAnimParams";
-							expression="	if (is3DEN) then {_this call BIS_fnc_ambientAnim__terminate};	[_this,_value] spawn	{		sleep 0.1;		params ['_unit','_value'];		if ((_value # 0 != '') && !isMultiplayer) then		{			[_unit,_value # 0,_value # 1,objNull,false,false] call BIS_fnc_ambientAnim;			waitUntil {sleep 0.1; ((behaviour _unit) == 'COMBAT') || (damage _unit > 0.6)};			_unit call BIS_fnc_ambientAnim__terminate;		};	}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"ARRAY"
-										};
-									};
-									class value
-									{
-										items=2;
-										class Item0
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="";
-											};
-										};
-										class Item1
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="ASIS";
-											};
-										};
-									};
-								};
-							};
-						};
-						class Attribute9
-						{
-							property="Enh_featureType";
-							expression="if (_value isEqualType 0) then {_this setFeatureType _value}; if (_value isEqualType 'STRING') then {_this setFeatureType parseNumber _value}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="0";
-								};
-							};
-						};
-						class Attribute10
-						{
 							property="HNEG_emed_emtrDieout1ID";
 							expression="false";
 							class Value
@@ -873,26 +742,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute11
-						{
-							property="HNEG_emed_emtrDieout2ID";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="0";
-								};
-							};
-						};
-						class Attribute12
+						class Attribute9
 						{
 							property="HNEG_emed_emitterInit";
 							expression=" if (!is3DEN) then { _this call compile _value; }; ";
@@ -911,10 +761,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute13
+						class Attribute10
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="HNEG_emed_emtrDieout2ID";
+							expression="false";
 							class Value
 							{
 								class data
@@ -923,14 +773,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="0";
 								};
 							};
 						};
-						nAttributes=14;
+						nAttributes=11;
 					};
 				};
 				class Item1
@@ -1169,75 +1019,6 @@ class Mission
 						};
 						class Attribute9
 						{
-							property="Enh_ambientAnimParams";
-							expression="	if (is3DEN) then {_this call BIS_fnc_ambientAnim__terminate};	[_this,_value] spawn	{		sleep 0.1;		params ['_unit','_value'];		if ((_value # 0 != '') && !isMultiplayer) then		{			[_unit,_value # 0,_value # 1,objNull,false,false] call BIS_fnc_ambientAnim;			waitUntil {sleep 0.1; ((behaviour _unit) == 'COMBAT') || (damage _unit > 0.6)};			_unit call BIS_fnc_ambientAnim__terminate;		};	}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"ARRAY"
-										};
-									};
-									class value
-									{
-										items=2;
-										class Item0
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="";
-											};
-										};
-										class Item1
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="ASIS";
-											};
-										};
-									};
-								};
-							};
-						};
-						class Attribute10
-						{
-							property="Enh_featureType";
-							expression="if (_value isEqualType 0) then {_this setFeatureType _value}; if (_value isEqualType 'STRING') then {_this setFeatureType parseNumber _value}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="0";
-								};
-							};
-						};
-						class Attribute11
-						{
 							property="HNEG_emed_emtrDieout1ID";
 							expression="false";
 							class Value
@@ -1255,26 +1036,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute12
-						{
-							property="HNEG_emed_emtrDieout2ID";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="0";
-								};
-							};
-						};
-						class Attribute13
+						class Attribute10
 						{
 							property="HNEG_emed_emitterInit";
 							expression=" if (!is3DEN) then { _this call compile _value; }; ";
@@ -1293,10 +1055,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute14
+						class Attribute11
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="HNEG_emed_emtrDieout2ID";
+							expression="false";
 							class Value
 							{
 								class data
@@ -1305,14 +1067,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="0";
 								};
 							};
 						};
-						nAttributes=15;
+						nAttributes=12;
 					};
 				};
 				class Item2
@@ -1532,75 +1294,6 @@ class Mission
 						};
 						class Attribute8
 						{
-							property="Enh_ambientAnimParams";
-							expression="	if (is3DEN) then {_this call BIS_fnc_ambientAnim__terminate};	[_this,_value] spawn	{		sleep 0.1;		params ['_unit','_value'];		if ((_value # 0 != '') && !isMultiplayer) then		{			[_unit,_value # 0,_value # 1,objNull,false,false] call BIS_fnc_ambientAnim;			waitUntil {sleep 0.1; ((behaviour _unit) == 'COMBAT') || (damage _unit > 0.6)};			_unit call BIS_fnc_ambientAnim__terminate;		};	}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"ARRAY"
-										};
-									};
-									class value
-									{
-										items=2;
-										class Item0
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="";
-											};
-										};
-										class Item1
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="ASIS";
-											};
-										};
-									};
-								};
-							};
-						};
-						class Attribute9
-						{
-							property="Enh_featureType";
-							expression="if (_value isEqualType 0) then {_this setFeatureType _value}; if (_value isEqualType 'STRING') then {_this setFeatureType parseNumber _value}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="0";
-								};
-							};
-						};
-						class Attribute10
-						{
 							property="HNEG_emed_emtrDieout1ID";
 							expression="false";
 							class Value
@@ -1618,26 +1311,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute11
-						{
-							property="HNEG_emed_emtrDieout2ID";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="0";
-								};
-							};
-						};
-						class Attribute12
+						class Attribute9
 						{
 							property="HNEG_emed_emitterInit";
 							expression=" if (!is3DEN) then { _this call compile _value; }; ";
@@ -1656,10 +1330,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute13
+						class Attribute10
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="HNEG_emed_emtrDieout2ID";
+							expression="false";
 							class Value
 							{
 								class data
@@ -1668,14 +1342,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="0";
 								};
 							};
 						};
-						nAttributes=14;
+						nAttributes=11;
 					};
 				};
 				class Item3
@@ -1781,25 +1455,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -1817,7 +1472,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -1836,7 +1491,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1855,7 +1510,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 			};
@@ -2056,26 +1711,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -2109,27 +1745,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -2145,7 +1762,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2164,10 +1781,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2179,11 +1796,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=2;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -2202,10 +1819,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -2217,14 +1834,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.97000003;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -2236,11 +1853,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item2
@@ -2275,27 +1892,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -2311,7 +1909,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2330,10 +1928,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2345,11 +1943,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=2;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -2368,10 +1966,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -2383,14 +1981,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.97000003;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -2402,11 +2000,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item3
@@ -2440,27 +2038,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -2476,7 +2055,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2495,10 +2074,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2510,11 +2089,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=2;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -2533,10 +2112,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -2548,14 +2127,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.97000003;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -2567,11 +2146,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item4
@@ -2643,25 +2222,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -2679,7 +2239,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -2698,7 +2258,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -2717,7 +2277,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item5
@@ -2749,27 +2309,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -2781,11 +2322,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=2;
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2804,10 +2345,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2819,11 +2360,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -2842,10 +2383,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -2857,14 +2398,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -2876,11 +2417,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item6
@@ -2912,27 +2453,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -2944,11 +2466,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=2;
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2967,10 +2489,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2982,11 +2504,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -3005,10 +2527,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -3020,14 +2542,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -3039,11 +2561,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item7
@@ -3113,25 +2635,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -3149,7 +2652,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -3168,7 +2671,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -3187,7 +2690,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item8
@@ -3257,25 +2760,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -3293,7 +2777,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -3312,7 +2796,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -3331,7 +2815,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item9
@@ -3402,25 +2886,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -3438,7 +2903,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -3457,7 +2922,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -3476,7 +2941,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item10
@@ -3547,25 +3012,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -3583,7 +3029,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -3602,7 +3048,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -3621,7 +3067,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item11
@@ -3692,25 +3138,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -3728,7 +3155,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -3747,7 +3174,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -3766,7 +3193,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item12
@@ -3837,25 +3264,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -3873,7 +3281,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -3892,7 +3300,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -3911,7 +3319,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item13
@@ -3982,25 +3390,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -4018,7 +3407,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -4037,7 +3426,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -4056,7 +3445,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item14
@@ -4127,25 +3516,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -4163,7 +3533,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -4182,7 +3552,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -4201,7 +3571,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item15
@@ -4272,25 +3642,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -4308,7 +3659,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -4327,7 +3678,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -4346,7 +3697,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 			};
@@ -4547,26 +3898,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -4598,27 +3930,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -4628,6 +3941,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -4655,6 +3987,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -4672,29 +4023,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -4710,26 +4042,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item2
@@ -4894,26 +4207,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -4946,27 +4240,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -4976,6 +4251,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5003,6 +4297,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -5020,29 +4333,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=2;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -5058,26 +4352,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item4
@@ -5110,27 +4385,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -5140,6 +4396,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5167,6 +4442,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -5184,29 +4478,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=2;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -5222,26 +4497,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item5
@@ -5274,27 +4530,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -5304,6 +4541,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5331,6 +4587,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -5348,29 +4623,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=2;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -5386,26 +4642,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item6
@@ -5437,27 +4674,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -5467,6 +4685,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5494,6 +4731,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -5511,29 +4767,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -5549,26 +4786,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item7
@@ -5600,27 +4818,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -5630,6 +4829,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5657,6 +4875,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -5674,29 +4911,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -5712,26 +4930,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item8
@@ -5763,27 +4962,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -5793,6 +4973,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5820,6 +5019,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -5837,29 +5055,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -5875,26 +5074,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item9
@@ -5926,27 +5106,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -5956,6 +5117,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -5983,6 +5163,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -6000,29 +5199,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -6038,26 +5218,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item10
@@ -6090,27 +5251,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -6120,6 +5262,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -6147,6 +5308,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -6164,29 +5344,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -6202,26 +5363,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item11
@@ -6254,27 +5396,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -6284,6 +5407,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -6311,6 +5453,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -6328,29 +5489,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -6366,26 +5508,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item12
@@ -6550,26 +5673,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item13
@@ -6734,26 +5838,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 			};
@@ -6954,26 +6039,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -7008,27 +6074,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -7044,7 +6091,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -7063,10 +6110,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7078,11 +6125,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=2;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7101,10 +6148,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -7116,14 +6163,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.97000003;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -7135,11 +6182,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item2
@@ -7174,27 +6221,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -7210,7 +6238,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -7229,10 +6257,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7244,11 +6272,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=2;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7267,10 +6295,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -7282,14 +6310,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.97000003;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -7301,11 +6329,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item3
@@ -7339,27 +6367,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -7375,7 +6384,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -7394,10 +6403,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7409,11 +6418,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.97000003;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7432,10 +6441,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -7447,14 +6456,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=0.97000003;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -7466,11 +6475,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item4
@@ -7503,27 +6512,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -7535,11 +6525,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=2;
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -7558,10 +6548,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7573,11 +6563,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7596,10 +6586,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -7611,14 +6601,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -7630,11 +6620,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item5
@@ -7666,27 +6656,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -7698,11 +6669,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=2;
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -7721,10 +6692,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7736,11 +6707,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7759,10 +6730,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -7774,14 +6745,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -7793,11 +6764,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item6
@@ -7829,27 +6800,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -7861,11 +6813,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=2;
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -7884,10 +6836,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7899,11 +6851,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7922,10 +6874,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -7937,14 +6889,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=2;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -7956,11 +6908,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item7
@@ -7992,27 +6944,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -8028,7 +6961,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -8047,10 +6980,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8062,11 +6995,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -8085,10 +7018,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -8100,14 +7033,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -8119,11 +7052,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item8
@@ -8155,27 +7088,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -8191,7 +7105,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -8210,10 +7124,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8225,11 +7139,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -8248,10 +7162,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -8263,14 +7177,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -8282,11 +7196,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item9
@@ -8318,27 +7232,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -8354,7 +7249,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -8373,10 +7268,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8388,11 +7283,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -8411,10 +7306,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -8426,14 +7321,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -8445,11 +7340,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item10
@@ -8481,27 +7376,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -8517,7 +7393,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -8536,10 +7412,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8551,11 +7427,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -8574,10 +7450,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -8589,14 +7465,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -8608,11 +7484,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item11
@@ -8644,27 +7520,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -8680,7 +7537,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -8699,10 +7556,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
-							property="pitch";
-							expression="_this setpitch _value;";
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8714,11 +7571,11 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0.95999998;
+									value=0;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -8737,10 +7594,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -8752,14 +7609,14 @@ class Mission
 											"SCALAR"
 										};
 									};
-									value=0;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute6
+						class Attribute5
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -8771,11 +7628,11 @@ class Mission
 											"BOOL"
 										};
 									};
-									value=1;
+									value=0;
 								};
 							};
 						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item12
@@ -8845,25 +7702,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -8881,7 +7719,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -8900,7 +7738,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -8919,7 +7757,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item13
@@ -8989,25 +7827,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -9025,7 +7844,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -9044,7 +7863,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -9063,7 +7882,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item14
@@ -9134,25 +7953,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -9170,7 +7970,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -9189,7 +7989,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -9208,7 +8008,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 			};
@@ -9246,13 +8046,13 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=4;
+				items=9;
 				class Item0
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={4359.1055,5.0014391,4098.0781};
+						position[]={4360.1685,5.0014391,4097.9409};
 						angles[]={0,0.092362821,0};
 					};
 					side="West";
@@ -9315,25 +8115,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -9351,7 +8132,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -9370,7 +8151,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -9389,7 +8170,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item1
@@ -9459,25 +8240,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -9495,7 +8257,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -9514,7 +8276,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -9533,7 +8295,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item2
@@ -9604,25 +8366,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -9640,7 +8383,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -9659,7 +8402,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -9678,7 +8421,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item3
@@ -9748,25 +8491,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -9784,7 +8508,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -9803,7 +8527,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -9822,7 +8546,633 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4360.7417,5.0014391,4092.6414};
+						angles[]={0,6.2172928,0};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="ESPECTRO";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="Tiger_Camo";
+								isBackpack=0;
+							};
+						};
+					};
+					id=135;
+					type="B_support_GMG_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=5;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4358.7476,5.0087976,4092.6316};
+						angles[]={0,6.2172928,0};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="ESPECTRO";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="Tiger_Camo";
+								isBackpack=0;
+							};
+						};
+					};
+					id=136;
+					type="B_support_GMG_F";
+					atlOffset=0.007358551;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=5;
+					};
+				};
+				class Item6
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4356.9214,5.0014391,4092.616};
+						angles[]={0,6.2172928,0};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="ESPECTRO";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="Tiger_Camo";
+								isBackpack=0;
+							};
+						};
+					};
+					id=137;
+					type="B_support_GMG_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=5;
+					};
+				};
+				class Item7
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4362.8257,5.0014391,4095.6978};
+						angles[]={0,6.2172928,0};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="ESPECTRO";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="Tiger_Camo";
+								isBackpack=0;
+							};
+						};
+					};
+					id=141;
+					type="B_support_GMG_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=5;
+					};
+				};
+				class Item8
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4363.144,5.0014391,4092.5254};
+						angles[]={0,6.2172928,0};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="ESPECTRO";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="Tiger_Camo";
+								isBackpack=0;
+							};
+						};
+					};
+					id=139;
+					type="B_support_GMG_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 			};
@@ -10022,26 +9372,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -10204,26 +9535,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item2
@@ -10386,26 +9698,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -10476,25 +9769,6 @@ class Mission
 						};
 						class Attribute2
 						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute3
-						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
@@ -10512,7 +9786,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -10531,7 +9805,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute4
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -10550,7 +9824,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
+						nAttributes=5;
 					};
 				};
 				class Item4
@@ -10714,26 +9988,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item5
@@ -10897,26 +10152,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item6
@@ -11079,26 +10315,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item7
@@ -11262,26 +10479,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 			};
@@ -11535,26 +10733,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -11772,26 +10951,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item2
@@ -12009,26 +11169,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -12245,26 +11386,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item4
@@ -12480,26 +11602,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item5
@@ -12717,26 +11820,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item6
@@ -12954,26 +12038,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 			};
@@ -16093,26 +15158,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -16145,27 +15191,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -16175,6 +15202,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -16202,6 +15248,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -16219,29 +15284,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -16257,26 +15303,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item2
@@ -16441,26 +15468,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -16493,27 +15501,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -16523,6 +15512,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -16550,6 +15558,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -16567,29 +15594,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=2;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -16605,26 +15613,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item4
@@ -16657,27 +15646,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -16687,6 +15657,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -16714,6 +15703,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -16731,29 +15739,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=2;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -16769,26 +15758,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item5
@@ -16821,27 +15791,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -16851,6 +15802,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -16878,6 +15848,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -16895,29 +15884,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=2;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -16933,26 +15903,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item6
@@ -16984,27 +15935,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -17014,6 +15946,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -17041,6 +15992,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -17058,29 +16028,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -17096,26 +16047,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item7
@@ -17148,27 +16080,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -17178,6 +16091,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -17205,6 +16137,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -17222,29 +16173,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -17260,26 +16192,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item8
@@ -17311,27 +16224,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -17341,6 +16235,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -17368,6 +16281,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -17385,29 +16317,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -17423,26 +16336,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item9
@@ -17475,27 +16369,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -17505,6 +16380,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -17532,6 +16426,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -17549,29 +16462,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -17587,26 +16481,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item10
@@ -17639,27 +16514,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -17669,6 +16525,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -17696,6 +16571,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -17713,29 +16607,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -17751,26 +16626,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item11
@@ -17803,27 +16659,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							property="ace_isMedic";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
 							class Value
 							{
 								class data
@@ -17833,6 +16670,25 @@ class Mission
 										type[]=
 										{
 											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
 										};
 									};
 									value=0;
@@ -17860,6 +16716,25 @@ class Mission
 						};
 						class Attribute3
 						{
+							property="ace_isEngineer";
+							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute4
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -17877,29 +16752,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0;
-								};
-							};
-						};
 						class Attribute5
 						{
-							property="acex_headless_blacklist";
-							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -17915,26 +16771,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=6;
 					};
 				};
 				class Item12
@@ -18100,26 +16937,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 				class Item13
@@ -18285,26 +17103,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="TFAR_CuratorCamEars";
-							expression="if (_value) then {_this setVariable ['TFAR_CuratorCamEars',_value,true]};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=8;
+						nAttributes=7;
 					};
 				};
 			};
@@ -18361,7 +17160,7 @@ class Mission
 			name="marker_4";
 			text="Configuración de ACE";
 			type="mil_arrow2";
-			angle=91.897995;
+			angle=91.897987;
 			id=124;
 		};
 		class Item40
@@ -18407,7 +17206,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={4367.9419,5.3815289,3922.4028};
-				angles[]={-0,3.1756806,0};
+				angles[]={0,3.1756806,0};
 			};
 			side="Empty";
 			flags=4;
@@ -18468,7 +17267,7 @@ class Mission
 			name="marker_9";
 			text="Caja de Arsenal";
 			type="mil_arrow2";
-			angle=184.55914;
+			angle=184.55913;
 			id=131;
 		};
 		class Item46
@@ -18491,44 +17290,6 @@ class Mission
 			{
 				class Attribute0
 				{
-					property="HNEG_emed_emtrDieout3ID";
-					expression="false";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="HNEG_emed_emtrDieout4ID";
-					expression="false";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				class Attribute2
-				{
 					property="HNEG_emed_aedInit";
 					expression=" if (!is3DEN) then { _this call compile _value; }; ";
 					class Value
@@ -18543,6 +17304,44 @@ class Mission
 								};
 							};
 							value="true";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="HNEG_emed_emitterInit";
+					expression=" if (!is3DEN) then { _this call compile _value; }; ";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="true";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="HNEG_emed_emtrDieout2ID";
+					expression="false";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="0";
 						};
 					};
 				};
@@ -18567,45 +17366,7 @@ class Mission
 				};
 				class Attribute4
 				{
-					property="HNEG_emed_emitterInit";
-					expression=" if (!is3DEN) then { _this call compile _value; }; ";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="true";
-						};
-					};
-				};
-				class Attribute5
-				{
-					property="Enh_featureType";
-					expression="if (_value isEqualType 0) then {_this setFeatureType _value}; if (_value isEqualType 'STRING') then {_this setFeatureType parseNumber _value}";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				class Attribute6
-				{
-					property="HNEG_emed_emtrDieout2ID";
+					property="HNEG_emed_emtrDieout4ID";
 					expression="false";
 					class Value
 					{
@@ -18622,7 +17383,26 @@ class Mission
 						};
 					};
 				};
-				nAttributes=7;
+				class Attribute5
+				{
+					property="HNEG_emed_emtrDieout3ID";
+					expression="false";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="0";
+						};
+					};
+				};
+				nAttributes=6;
 			};
 		};
 		class Item47
@@ -18632,7 +17412,7 @@ class Mission
 			name="marker_10";
 			text="Bandera ZR";
 			type="mil_arrow2";
-			angle=184.55899;
+			angle=184.55898;
 			id=133;
 		};
 	};
