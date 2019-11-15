@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.5.0...v0.6.0) (2019-11-15)
+
+
+### Features
+
+* **KDM:** Agregados espacios para ECHO ([5bdaf0c](https://github.com/ZR-TECDI/ZR_KDM/commit/5bdaf0cc915620b9df83943b3bdd4b9318620002))
+
 # [0.5.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.4.0...v0.5.0) (2019-11-11)
 
 
