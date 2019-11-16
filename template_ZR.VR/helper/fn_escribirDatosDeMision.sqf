@@ -32,7 +32,7 @@ MAPA_MISION   = worldName;
 diag_log format["%1: NOMBRE_MISION %2", prefix, NOMBRE_MISION];
 diag_log format["%1: DESC_MISION %2", prefix, DESC_MISION];
 diag_log format["%1: AUTOR_MISION %2", prefix, AUTOR_MISION];
-diag_log format["%1: TIPO_MISION %2", prefix, NOMBRE_MISION];
+diag_log format["%1: TIPO_MISION %2", prefix, TIPO_MISION];
 if (!isNil "NOMBRE_CAMPA") then {
     diag_log format["%1: NOMBRE_CAMPA %2", prefix, NOMBRE_CAMPA];
 };
