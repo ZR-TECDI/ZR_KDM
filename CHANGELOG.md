@@ -1,3 +1,10 @@
+## [0.6.1](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.6.0...v0.6.1) (2019-11-16)
+
+
+### Bug Fixes
+
+* **KDM:** corregido error que imprimía nombre de mision en lugar de tipo ([160406c](https://github.com/ZR-TECDI/ZR_KDM/commit/160406cb8a85e4342976c31c7dbc45aedc9586c3))
+
 # [0.6.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.5.0...v0.6.0) (2019-11-15)
 
 
