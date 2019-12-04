@@ -1,0 +1,78 @@
+#:kivy 1.11.1
+#:import icon zapador.iconfonts.icon
+#:import zapa zapador.zapadorapp
+#:import toggleado zapador.clases.toggleado
+
+<CampoTexto>:
+    laid:laid
+
+    GridLayout:
+        cols:2
+        Label:
+            text: root.etiqueta
+        TextInput:
+            id: laid
+            text: root.placeholder
+            multiline:False
+
+<BTNueva@ToggleButton>:
+    text:'Nueva'
+    group:'paginas'
+    state:'normal'
+<BTImportar@ToggleButton>:
+    text:'Importar'
+    group:'paginas'
+    state:'normal'
+<BTOpciones@ToggleButton>:
+    markup:True
+    group:'paginas'
+    # text: "%s"%(icon('icon-adn'))
+    text:'S'
+    state:'normal'
+    size_hint:0.15,0.8
+<BaseTabs@GridLayout>:
+    rows:1
+    row_default_height:40
+    row_force_default:True
+    size_hint_y:0.1
+
+<Tabs1@BaseTabs>:
+    BTNueva:
+        state:'down'
+        on_state:toggleado(self)
+    BTImportar:
+        state:'normal'
+        on_press:zapa.cambiar_pantalla('pantalla_importar')
+    AnchorLayout:
+        anchor_x:'right'
+        BTOpciones:
+            state:'normal'
+            on_press:zapa.cambiar_pantalla('pantalla_opciones')
+<Tabs2@BaseTabs>:
+    BTNueva:
+        state:'normal'
+        on_press:zapa.cambiar_pantalla('pantalla_nueva')
+    BTImportar:
+        state:'down'
+        on_state:toggleado(self)
+    AnchorLayout:
+        anchor_x:'right'
+        BTOpciones:
+            state:'normal'
+            on_press:zapa.cambiar_pantalla('pantalla_opciones')
+<Tabs3@BaseTabs>:
+    BTNueva:
+        state:'normal'
+        on_press:zapa.cambiar_pantalla('pantalla_nueva')
+    BTImportar:
+        state:'normal'
+        on_press:zapa.cambiar_pantalla('pantalla_importar')
+    AnchorLayout:
+        anchor_x:'right'
+        BTOpciones:
+            state:'down'
+            on_state:toggleado(self)
+
+
+
+
