@@ -10,7 +10,8 @@ with open('zapador/kv/main.kv', encoding='UTF-8') as f:
     Builder.load_string(f.read())
 with open('zapador/kv/clases.kv', encoding='UTF-8') as f: 
     Builder.load_string(f.read())
-
+with open('zapador/kv/contenido.kv', encoding='UTF-8') as f:
+    Builder.load_string(f.read())
 
 class Pantalla_Nueva(Screen):
     pass

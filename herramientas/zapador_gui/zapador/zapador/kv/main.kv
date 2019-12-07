@@ -2,40 +2,32 @@
 
 <Pantalla_Base@GridLayout>:
     rows:2
-    padding:8
+    padding:10
     canvas:
         Rectangle:
             size:self.size
             pos:self.pos
             source:'zapador/assets/img/camo.jpg'
 
-<Contenido@GridLayout>:
-    cols:3
-    hint_size_y:1
-    canvas:
-        Color: 
-            rgba: 0.20,0.18,0.18,1
-        Rectangle:
-            size:root.size
-            pos:root.pos
-
 <Pantalla_Nueva>:
     Pantalla_Base:
         Tabs1:
-        Contenido:
-            Label:
-                text:'Nueva wea'
+        Nueva:
 
 <Pantalla_Importar>:
     Pantalla_Base:
         Tabs2:
         Contenido:
             Label:
-                text:'Importar la wea'
+                text:'¡En Construcción!'
+                valign:'middle'
+                halign:'center'
 
 <Pantalla_Opciones>:
     Pantalla_Base:
         Tabs3:
         Contenido:
             Label:
-                text:'Opciones de la wea'
+                text:'¡En Construcción!'
+                valign:'middle'
+                halign:'center'

@@ -1,0 +1,59 @@
+#:kivy 1.11.1
+#:import generar zapador.clases.generar
+#:import cons zapador.constantes
+#: import Factory kivy.factory.Factory
+
+<Nueva@GridLayout>:
+    cols:1
+    listamapa:listamapa
+    tipomision:tipomision
+    Contenido:
+        CampoTexto:
+            nombre_autor:self.laid.text
+            etiqueta:'Autor: '
+            placeholder:'ZR Army - Dept. Tecnico y Diseño'
+        CampoTexto:
+            nombre_mision:self.laid.text
+            etiqueta:'Misión: '
+            placeholder:'TEMPLATE ZR'
+        CampoTexto:
+            desc_mision:self.laid.text
+            etiqueta:'Desc: '
+            placeholder:'Uso exclusivo de Zona Roja Army.'
+        GridLayout:
+            rows:1
+            Label:
+                size_hint_x:0.1
+                text:'Mapa: '
+                halign:'right'
+                valign:'middle'
+            ListaMapas:
+                id:listamapa
+                on_text: if self.text == 'Otro': Factory.MapaCustom().open()
+        GridLayout:
+            rows:1
+            Label:
+                size_hint_x:0.1
+                text:'¿Misión oficial?'
+                halign:'right'
+                valign:'middle'
+            Switch:
+                size_hint_x:0.2
+                id:mision_oficial
+                # on_value: root.oficial = True
+        GridLayout:
+            rows:1
+            Label:
+                size_hint_x:0.1
+                text:'Tipo: '
+                halign:'right'
+                valign:'middle'
+            ListaMapas:
+                id:tipomision
+                text:'Improvisada'
+                values:cons.TIPO_MISION.keys()
+                
+    Button:
+        text:'¡Generar!'
+        size_hint_y:0.2
+        on_release: generar(root, mision_oficial.active)

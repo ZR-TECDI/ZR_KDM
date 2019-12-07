@@ -2,18 +2,48 @@
 #:import icon zapador.iconfonts.icon
 #:import zapa zapador.zapadorapp
 #:import toggleado zapador.clases.toggleado
+#:import mapa_custom zapador.clases.mapa_custom
+#:import Factory kivy.factory.Factory
+
+<Contenido@GridLayout>:
+    cols:2
+    rows:5
+    row_default_height:40
+    row_force_default:True
+    size_hint_y:1
+    padding:20
+    spacing:10
+    canvas:
+        Color: 
+            rgba: 0.20,0.18,0.18,1
+        Rectangle:
+            size:root.size
+            pos:root.pos
 
 <CampoTexto>:
     laid:laid
-
+    size_hint_y:0.2
     GridLayout:
         cols:2
+        padding:1
         Label:
+            size_hint_x:0.2
             text: root.etiqueta
-        TextInput:
-            id: laid
-            text: root.placeholder
             multiline:False
+            halign:'right'
+            valign:'middle'
+        TextInput:
+            id:laid
+            text: root.placeholder
+            halign:'center'
+            valing:'middle'
+            multiline:False
+
+<ListaMapas>:
+    size_hint_x:0.5
+    size_hint_y:0.2
+    text:'Altis'
+    values:(cons.LISTA_MAPAS.keys())
 
 <BTNueva@ToggleButton>:
     text:'Nueva'
@@ -26,8 +56,8 @@
 <BTOpciones@ToggleButton>:
     markup:True
     group:'paginas'
-    # text: "%s"%(icon('icon-adn'))
     text:'S'
+    # text:'{}'.format(icon('icon-cog'))
     state:'normal'
     size_hint:0.15,0.8
 <BaseTabs@GridLayout>:
@@ -73,6 +103,23 @@
             state:'down'
             on_state:toggleado(self)
 
-
-
+<MapaCustom@Popup>:
+    # auto_dismiss:False
+    size_hint:.5,.5
+    title:'Mapa personalizado'
+    GridLayout:
+        rows:3
+        rows_minimum:{0:50,1:5,2:10}
+        Label:
+            text:'Si no estaba tu mapa en la lista, puedes escribir en este cuadro de texto el nombre código del mapa.\nSuele ser el nombre normal pero anteponiendo un ".",\npor ejemplo ".Altis".'
+            text_size:self.width, None
+            multiline:True
+        TextInput:
+            id:codigo_mapa
+            text:'Ingresa el código de mapa...'
+            multiline:False
+        
+        Button:
+            text:'Aceptar'
+            on_release: mapa_custom(codigo_mapa.text, root)
 
