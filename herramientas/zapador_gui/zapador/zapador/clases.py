@@ -28,6 +28,7 @@ class Generador():
             self.campana = campana
         else:
             self.campana = 'NULL'
+        self.foto = foto
 
         if self.DEBUG:
             self.debug_valores(mapa)
@@ -40,5 +41,6 @@ class Generador():
             "mapa: " + mapa + " ({})".format(self.mapa),
             "es oficial: " + str(self.oficial),
             "tipo: " + self.tipo,
-                "campaña: " + self.campana]:
+            "campaña: " + self.campana,
+            "path foto: " + self.foto]:
             print(e)

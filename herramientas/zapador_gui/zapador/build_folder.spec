@@ -3,17 +3,12 @@
 from kivy_deps import sdl2, glew
 
 block_cipher = None
-mi_data = [
-    ('D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador\\zapador\\assets\\fonts\\*', 'zapador\\assets\\fonts'),
-    ('D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador\\zapador\\assets\\img\\*', 'zapador\\assets\\img'),
-    ('D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador\\zapador\\kv\\*', 'zapador\\kv')
-    ]
+
 
 a = Analysis(['main.py'],
-             pathex=['D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador',
-             'D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador\\zapador'],
+             pathex=['D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador'],
              binaries=[],
-             datas=mi_data,
+             datas=[],
              hiddenimports=['win32timezone', 'zapador'],
              hookspath=[],
              runtime_hooks=[],
@@ -28,12 +23,12 @@ exe = EXE(pyz,
           a.scripts,
           [],
           exclude_binaries=True,
-          name='main',
+          name='zapador',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=True)
+          console=False )
 coll = COLLECT(exe, Tree('D:\github\corp-0\ZR_KDM\herramientas\zapador_gui\zapador\zapador', 'zapador'),
                a.binaries,
                a.zipfiles,
@@ -42,4 +37,5 @@ coll = COLLECT(exe, Tree('D:\github\corp-0\ZR_KDM\herramientas\zapador_gui\zapad
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='main')
+               name='zapador',
+               icon='D:\github\corp-0\ZR_KDM\herramientas\zapador_gui\zapador\zapador\assets\img\zapador.ico')
