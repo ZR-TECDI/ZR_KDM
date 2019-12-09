@@ -1,49 +1,41 @@
 #:kivy 1.11.1
-#:import icon zapador.iconfonts.icon
+
 #:import zapa zapador.zapadorapp
-#:import toggleado zapador.clases.toggleado
-#:import mapa_custom zapador.clases.mapa_custom
+#:import toggleado zapador.metodos.toggleado
+#:import mapa_custom zapador.metodos.mapa_custom
+#:import cambiar_foto zapador.metodos.cambiar_foto
 #:import Factory kivy.factory.Factory
 
 <Contenido@GridLayout>:
-    cols:2
-    rows:5
-    row_default_height:40
-    row_force_default:True
-    size_hint_y:1
-    padding:20
-    spacing:10
     canvas:
         Color: 
             rgba: 0.20,0.18,0.18,1
         Rectangle:
             size:root.size
             pos:root.pos
-
-<CampoTexto>:
-    laid:laid
+    # cols:1
+    rows:5
+    rows_minimum:{0:40,1:40,2:40,3:40,4:200}
+    size_hint_y:1
+    padding:20
+    spacing:10
+<CampoTexto@GridLayout>:
     size_hint_y:0.2
-    GridLayout:
-        cols:2
-        padding:1
-        Label:
-            size_hint_x:0.2
-            text: root.etiqueta
-            multiline:False
-            halign:'right'
-            valign:'middle'
-        TextInput:
-            id:laid
-            text: root.placeholder
-            halign:'center'
-            valing:'middle'
-            multiline:False
+    cols:2
+    padding:1
+<Etiqueta@Label>:
+    size_hint_x:0.2
+    multiline:False
+    halign:'right'
+    valign:'middle'
+<EntradaTexto@TextInput>:
+    halign:'center'
+    valing:'middle'
+    multiline:False
 
-<ListaMapas>:
+<ListaDrop@Spinner>:
     size_hint_x:0.5
     size_hint_y:0.2
-    text:'Altis'
-    values:(cons.LISTA_MAPAS.keys())
 
 <BTNueva@ToggleButton>:
     text:'Nueva'
@@ -123,3 +115,22 @@
             text:'Aceptar'
             on_release: mapa_custom(codigo_mapa.text, root)
 
+<FotoMision>:
+    size_hint: .95,.95
+    GridLayout:
+        rows:2
+        FileChooser:
+            size_hint:.9,.9
+            id:filechoose
+            dirselect:True
+            path:'C://'
+            FileChooserListLayout:
+        BoxLayout:
+            size_hint:1,.1
+            orientation:'horizontal'
+            Button:
+                text:'Abrir'
+                on_release:root.cambiar_foto(filechoose.selection)
+            Button:
+                text:'Cancelar'
+                on_release:root.dismiss()

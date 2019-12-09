@@ -44,6 +44,16 @@ LISTA_MAPAS = {
     "Otro":"CUSTOM"
 }
 
+API_JSON_TEST = {
+    "CAMPANAS": [
+        "campaña prueba 1",
+        "campaña prueba 2",
+        "campaña prueba 3",
+        "campaña prueba 4",
+        "Crear Nueva"
+    ]
+}
+
 TIPO_MISION = {
     "Campaña":"CAMPANA",
     "Entrenamiento":"ENTRENAMIENTO",

@@ -2,7 +2,6 @@
 __pycache__/
 build/
 dist/
-*.spec
 descarga/
 zapador_config.json
 mpmissions.txt
