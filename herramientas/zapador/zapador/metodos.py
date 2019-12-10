@@ -2,6 +2,8 @@ import zapador.constantes as cons
 from kivy.factory import Factory
 import os
 import json
+import requests as r
+from pyunpack import Archive
 
 # GUI
 
@@ -75,15 +77,33 @@ def crear_archivo_config(popup, ruta):
     else:
         popup.dismiss()
 
-    json_settings = cons.SETTINGS_INICIALES
-    json_settings['MPMISSIONS'] = ruta
+    cons.SETTINGS_ACTUALES = cons.SETTINGS_INICIALES
+    cons.SETTINGS_ACTUALES['MPMISSIONS'] = ruta
 
-    os.makedirs(cons.SETTINGS_DIR)
+    if not os.path.isdir(cons.TEMPLATE_DIR):
+        os.makedirs(cons.TEMPLATE_DIR)
     with open(cons.SETTINGS_FILE, 'w', encoding='UTF-8') as f:
-        f.write(json.dumps(json_settings, sort_keys=True, indent=4))
+        f.write(json.dumps(cons.SETTINGS_ACTUALES, sort_keys=True, indent=4))
 
     pre_run()
+    manejador_plantilla()
 
 def manejador_plantilla():
-    if not os.path.isdir(cons.TEMPLATE_DIR):
+    """El manejador de plantillas maneja las plantillas"""
+
+    if not os.path.isdir(cons.TEMPLATE_DIR + '/' + cons.TEMPLATE_NAME):
         print('No hay carpeta de plantilla, se intentará bajar')
+        descargar_plantilla = Factory.Descargando(
+            titulo='Descargando plantilla',
+            mensaje='Descargando la última versión estable de KDM'
+        )
+        descargar_plantilla.open()
+        
+        descargar_plantilla.descargar(cons.KDM_URL, cons.TEMPLATE_DIR + cons.TEMPLATE_NAME + '.rar')
+       
+        
+def un_rar(rar, ruta):
+    """Saca del rar las cosas :O"""
+    print(rar, ruta)
+    Archive(rar).extractall(ruta)
+

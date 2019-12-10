@@ -113,13 +113,10 @@
             text:'Aceptar'
             on_release: root.dismiss()
 
-
-
 <PrimeraVez@Popup>:
     auto_dismiss:False
     size_hint:1,1
     title:'Bienvenido'
-
     GridLayout:
         rows:4
         Label:
@@ -207,3 +204,21 @@
 
 <FotoMision>:
     title:'Cambiar foto'
+
+<Descargando>:
+    title:self.titulo
+    size_hint:.5,.5
+    auto_dismiss:False
+    GridLayout:
+        rows:3
+        Label:
+            text:root.mensaje
+            text_size:self.width, None
+        ProgressBar:
+            id:barrita
+            max:root.peso_max
+            value:root.peso_actual
+        Button:
+            text:'Continuar'
+            disabled:root.continuar
+            on_release:root.dismiss()

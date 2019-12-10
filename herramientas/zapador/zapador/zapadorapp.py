@@ -37,6 +37,9 @@ class ZapadorApp(App):
     def on_start(self):
         pre_run()
 
+    def on_stop(self):
+        Descargando.stop.set()
+
     def build(self):
         self.title = 'Zapador v'+cons.BUILD_VERSION
         self.icon  = 'zapador/assets/img/zapador.ico'
