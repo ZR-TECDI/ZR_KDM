@@ -5,10 +5,10 @@ from kivy_deps import sdl2
 block_cipher = None
 
 a = Analysis(['main.py'],
-             pathex=['D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador'],
+             pathex=['D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador'],
              binaries=[],
              datas=[],
-             hiddenimports=['win32timezone', 'zapador'],
+             hiddenimports=['win32timezone', 'zapador', 'patool'],
              hookspath=[],
              runtime_hooks=[],
              excludes=['audio', 'video', 'camera', 'spelling', 'audio_sdl2', 'cv2'],
@@ -18,7 +18,7 @@ a = Analysis(['main.py'],
              noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
-exe = EXE(pyz, Tree('D://github/corp-0/ZR_KDM/herramientas/zapador_gui/zapador/zapador/', 'zapador'),
+exe = EXE(pyz, Tree('D://github/corp-0/ZR_KDM/herramientas/zapador/zapador', 'zapador'),
           a.scripts,
           a.binaries,
           a.zipfiles,
@@ -33,4 +33,4 @@ exe = EXE(pyz, Tree('D://github/corp-0/ZR_KDM/herramientas/zapador_gui/zapador/z
           upx_exclude=[],
           runtime_tmpdir=None,
           console=True,
-          icon='D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador_gui\\zapador\\zapador\\assets\\img\\zapador.ico')
+          icon='D:\\github\\corp-0\\ZR_KDM\\herramientas\\zapador\\zapador\\assets\\img\\zapador.ico')
