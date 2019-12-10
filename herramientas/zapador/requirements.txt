@@ -3,6 +3,7 @@ appdirs==1.4.3
 certifi==2019.11.28
 chardet==3.0.4
 docutils==0.15.2
+EasyProcess==0.2.7
 future==0.18.2
 idna==2.8
 Kivy==1.11.1
@@ -17,5 +18,4 @@ pypiwin32==223
 pywin32==227
 pywin32-ctypes==0.2.0
 requests==2.22.0
-unrar==0.4
 urllib3==1.25.7
