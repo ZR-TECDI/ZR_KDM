@@ -115,22 +115,34 @@
             text:'Aceptar'
             on_release: mapa_custom(codigo_mapa.text, root)
 
-<FotoMision>:
+
+<Navegador>:
     size_hint: .95,.95
+    on_open:lista_lugares.values=self.encontrar_lugares();lista_lugares.text=self.encontrar_lugares()[0]
     GridLayout:
-        rows:2
+        rows:3
+        GridLayout:
+            cols:2
+            size_hint_y:.1
+            Label:
+                text:'Lugares: '
+            Spinner:
+                id:lista_lugares
+                on_text:filechoose.path=self.text
         FileChooser:
             size_hint:.9,.9
             id:filechoose
             dirselect:True
-            path:'C://'
             FileChooserListLayout:
         BoxLayout:
             size_hint:1,.1
             orientation:'horizontal'
             Button:
                 text:'Abrir'
-                on_release:root.cambiar_foto(filechoose.selection)
+                on_release:root.boton_abrir(filechoose.selection)
             Button:
                 text:'Cancelar'
                 on_release:root.dismiss()
+
+<FotoMision>:
+    title:'Cambiar foto'

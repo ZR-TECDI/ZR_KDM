@@ -1,12 +1,37 @@
 import zapador.constantes as cons
 from kivy.uix.popup import Popup
 from kivy.factory import Factory
+import psutil
+from os import environ as env
 
-class FotoMision(Popup):
-    def abrir_popup(self,foto_id):
+
+class Navegador(Popup):
+    def encontrar_lugares(self):
+        lugares = []
+        escritorio = env['USERPROFILE'] + '/Desktop'
+        documentos = env['USERPROFILE'] + '/Documents'
+        lugares.append(escritorio)
+        lugares.append(documentos)
+        
+        parts = psutil.disk_partitions()
+        for part in parts:
+            lugares.append(part[0])
+
+        return lugares
+
+    def abrir_popup(self):
+        self.open()
+
+    def boton_abrir(self, select):
+        pass
+
+
+class FotoMision(Navegador):
+    def abrir_popup(self, foto_id):
         self.foto_id = foto_id
         self.open()
-    def cambiar_foto(self, select):
+
+    def boton_abrir(self, select):
         self.foto_id.source = select[0]
         self.dismiss()
 
