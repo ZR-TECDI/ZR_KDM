@@ -1,14 +1,24 @@
 from appdirs import AppDirs
 
 SETTINGS_DIR = AppDirs(appname='zapador', appauthor='ZR-TECDI').site_config_dir
-TEMPLATE_DIR = SETTINGS_DIR + '/template/'
+SETTINGS_FILE = SETTINGS_DIR + '/config.json'
+TEMPLATE_DIR = SETTINGS_DIR + '/plantilla/'
 
 
 BUILD_VERSION = '0.9.0'
 KDM_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/template_ZR.VR/configurar_mision.hpp'
 LOCAL_KDM_VERSION = TEMPLATE_DIR + '/template_ZR.VR/configurar_mission.hpp'
-ZAPADOR_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/versionado.py'
+ZAPADOR_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/zapador/constantes.py'
 
+SETTINGS_INICIALES = {
+    "MPMISSIONS": "",
+    "BRANCH": "master"
+}
+
+SETTINGS_ACTUALES = {}
+
+#TODO quitar la última branch de acá
+LISTA_BRANCHES = ['master', 'dev-branch', 'feat/zapador_gui']
 
 LISTA_MAPAS = {
     "Altis":".Altis",

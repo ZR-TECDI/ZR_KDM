@@ -3,7 +3,7 @@
 #:import zapa zapador.zapadorapp
 #:import toggleado zapador.metodos.toggleado
 #:import mapa_custom zapador.metodos.mapa_custom
-#:import cambiar_foto zapador.metodos.cambiar_foto
+#:import crear_archivo_config zapador.metodos.crear_archivo_config
 #:import Factory kivy.factory.Factory
 
 <Contenido@GridLayout>:
@@ -94,6 +94,67 @@
         BTOpciones:
             state:'down'
             on_state:toggleado(self)
+
+<ERROR>:
+    size_hint:.5,.5
+    title:self.titulo
+    auto_dismiss:False
+    GridLayout:
+        rows:2
+        padding:5
+        Label:
+            size_hint_y:.9
+            multiline:True
+            markup:True
+            text_size:self.width, None
+            text:root.mensaje
+        Button:
+            size_hint_y:.2
+            text:'Aceptar'
+            on_release: root.dismiss()
+
+
+
+<PrimeraVez@Popup>:
+    auto_dismiss:False
+    size_hint:1,1
+    title:'Bienvenido'
+
+    GridLayout:
+        rows:4
+        Label:
+            text:'Bienvenido a Zapador, el generador de plantillas de Zona Roja Army.\nAntes de comenzar necesitamos un datito, la ubicación de tu carpeta mpmissions.\nSuele estar en: [b][color=#e6cd17]Documents/Arma 3 - Other Profiles/TU_PERFIL_DE_ARMA/mpmissions[/color][/b]'
+            multiline:True
+            text_size:self.width, None
+            valign:'middle'
+            halign:'justify'
+            markup:True
+        GridLayout:
+            size_hint_y:.2
+            rows:1
+            TextInput:
+                size_hint_x:.8
+                id:ruta_mpmissions
+                multiline:False
+                halign:'center'
+                valign:'middle'
+            Button:
+                size_hint_x:.1
+                text:'Navegar'
+                on_release:Factory.MPMissions().abrir_popup(ruta_mpmissions)
+        Button:
+            size_hint_y:.4
+            opacity:0
+            disabled:True
+        GridLayout:
+            size_hint_y:.1
+            rows:1
+            Button:
+                text:'Aceptar'
+                on_release:crear_archivo_config(root,ruta_mpmissions.text)
+            Button:
+                text:'Cancelar'
+                on_release:quit()
 
 <MapaCustom@Popup>:
     # auto_dismiss:False

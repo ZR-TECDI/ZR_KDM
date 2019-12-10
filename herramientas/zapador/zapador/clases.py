@@ -1,9 +1,13 @@
 import zapador.constantes as cons
 from kivy.uix.popup import Popup
 from kivy.factory import Factory
+from kivy.properties import StringProperty
 import psutil
 from os import environ as env
 
+class ERROR(Popup):
+    titulo = StringProperty('titulo')
+    mensaje = StringProperty('mensaje')
 
 class Navegador(Popup):
     def encontrar_lugares(self):
@@ -25,6 +29,14 @@ class Navegador(Popup):
     def boton_abrir(self, select):
         pass
 
+class MPMissions(Navegador):
+    def abrir_popup(self, text_id):
+        self.text_id = text_id
+        self.open()
+
+    def boton_abrir(self, select):
+        self.text_id.text = select[0]
+        self.dismiss()
 
 class FotoMision(Navegador):
     def abrir_popup(self, foto_id):

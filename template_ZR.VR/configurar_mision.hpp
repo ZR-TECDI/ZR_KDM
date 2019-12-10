@@ -1,3 +1,4 @@
+VERSION = "1.0.0"
 //General
 author = "ZR Army - Dept. Tecnico y Diseño";
 OnLoadName = "TEMPLATE ZR";
