@@ -3,7 +3,7 @@ from kivy.factory import Factory
 import os
 import json
 import requests as r
-from pyunpack import Archive
+import zipfile
 
 # GUI
 
@@ -99,11 +99,13 @@ def manejador_plantilla():
         )
         descargar_plantilla.open()
         
-        descargar_plantilla.descargar(cons.KDM_URL, cons.TEMPLATE_DIR + cons.TEMPLATE_NAME + '.rar')
+        descargar_plantilla.descargar(cons.KDM_URL, cons.TEMPLATE_DIR + cons.TEMPLATE_NAME + '.zip')
        
         
-def un_rar(rar, ruta):
-    """Saca del rar las cosas :O"""
-    print(rar, ruta)
-    Archive(rar).extractall(ruta)
+def un_zip(zip, ruta):
+    """Saca del zip las cosas :O"""
+    print('zip #####################')
+    print(zip, ruta)
+    with zipfile.ZipFile(zip, 'r') as zip_ref:
+        zip_ref.extractall(ruta)
 

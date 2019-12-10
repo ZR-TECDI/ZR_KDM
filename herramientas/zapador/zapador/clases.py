@@ -1,6 +1,6 @@
 import zapador.constantes as cons
 from zapador.metodos import pre_run
-from zapador.metodos import un_rar
+from zapador.metodos import un_zip
 from kivy.uix.popup import Popup
 from kivy.factory import Factory
 from kivy.properties import StringProperty
@@ -46,7 +46,7 @@ class Descargando(Popup):
                 f.write(chunk)
                 self.update_gui(i)
                 i+=1
-        un_rar(ruta_descarga, cons.TEMPLATE_DIR)
+        un_zip(ruta_descarga, cons.TEMPLATE_DIR)
         self.continuar = False
         
 
