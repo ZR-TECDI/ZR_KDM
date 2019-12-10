@@ -86,7 +86,6 @@ def crear_archivo_config(popup, ruta):
         f.write(json.dumps(cons.SETTINGS_ACTUALES, sort_keys=True, indent=4))
 
     pre_run()
-    manejador_plantilla()
 
 def manejador_plantilla():
     """El manejador de plantillas maneja las plantillas"""
@@ -104,8 +103,7 @@ def manejador_plantilla():
         
 def un_zip(zip, ruta):
     """Saca del zip las cosas :O"""
-    print('zip #####################')
-    print(zip, ruta)
+
     with zipfile.ZipFile(zip, 'r') as zip_ref:
         zip_ref.extractall(ruta)
 
