@@ -10,7 +10,7 @@ TEMPLATE_NAME = 'template_ZR.VR'
 
 KDM_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/template_ZR.VR/configurar_mision.hpp'
 LOCAL_KDM_VERSION = TEMPLATE_DIR + '/template_ZR.VR/configurar_mission.hpp'
-KDM_URL = 'https://github.com/ZR-TECDI/ZR_KDM/raw/{}/template_ZR.VR.rar'
+KDM_URL = 'https://github.com/ZR-TECDI/ZR_KDM/raw/{}/template_ZR.VR.zip'
 ZAPADOR_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/zapador/constantes.py'
 
 SETTINGS_INICIALES = {
