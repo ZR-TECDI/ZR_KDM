@@ -154,7 +154,8 @@ def chequear_version(local, remoto):
 
             version_local = re.search(busqueda, local)
         version_remoto = re.search(busqueda, remoto)
-        version_local = version_local.group(1)
+        if not type(version_local) == str:
+            version_local = version_local.group(1)
         version_remoto = version_remoto.group(1)
 
 
