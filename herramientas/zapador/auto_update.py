@@ -7,7 +7,6 @@ from os.path import isfile, isdir
 from zipfile import ZipFile
 from os import remove
 from shutil import rmtree
-from subprocess import Popen, CREATE_NEW_CONSOLE
 
 with open(cons.SETTINGS_FILE, 'r', encoding='UTF-8') as f:
     cons.SETTINGS_ACTUALES = load(f)
@@ -55,11 +54,9 @@ with ZipFile(cons.DIR_SCRIPT + '/zapador.zip', 'r') as zip_ref:
 if total_size != 0 and t.n != total_size:
     print("ERROR, Algo salió mal...")
     system('pause')
-print('Actualización exitosa.')
+print('Actualización exitosa. Vuelve a abrir Zapador.')
 
 system('pause')
 
 if isfile(cons.DIR_SCRIPT + '/zapador.zip'):
     remove(cons.DIR_SCRIPT + '/zapador.zip')
-
-Popen (cons.DIR_SCRIPT + '/zapador.exe', creationflags=CREATE_NEW_CONSOLE)
