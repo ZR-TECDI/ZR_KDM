@@ -3,24 +3,50 @@ import shutil
 import sys
 from subprocess import Popen
 from distutils.dir_util import copy_tree
+import zipfile
 import cowsay
+import random
 
 # constantes
 DIR_SCRIPT = os.path.dirname(os.path.realpath(sys.argv[0]))
 PAQUETE = DIR_SCRIPT + '/paquete'
-DIST = DIR_SCRIPT + '/dist'
 ORIGEN = DIR_SCRIPT + '/zapador'
 COSO = DIR_SCRIPT + '/dist/zapador'
+DIST = DIR_SCRIPT + '/dist'
+PACK = DIST + '/pack/'
+BINARIOS = DIST + '/binarios_zapador/'
 
-# funciones
-def make_archive(source, destination):
-        base = os.path.basename(destination)
-        name = base.split('.')[0]
-        format = base.split('.')[1]
-        archive_from = os.path.dirname(source)
-        archive_to = os.path.basename(source.strip(os.sep))
-        shutil.make_archive(name, format, archive_from, archive_to)
-        shutil.move('%s.%s'%(name,format), destination)
+# clasese y funciones
+class Zipeador():
+    ruta = None
+    archivo_zip = None
+    zipy = None
+
+    def __init__(self, ruta, archivo_zip):
+        self.ruta = ruta
+        self.archivo_zip = archivo_zip
+        self.zipy = zipfile.ZipFile(archivo_zip, 'w')
+    
+    def zipear(self):
+        for elemento in os.listdir(self.ruta):
+            full_path = self.ruta + '/' + elemento
+            if os.path.isfile(full_path):
+                print('zipeando archivo: ' + elemento)
+                self.zipy.write(DIST + '/' + elemento, elemento)
+            if os.path.isdir(full_path):
+                print('zipeando carpeta: ' + elemento)
+                self.tratar_carpetas(elemento)
+        self.zipy.close()
+    def tratar_carpetas(self, carpeta):
+        for elemento in os.listdir(carpeta):
+            full_path = self.ruta + '/' + carpeta + '/' + elemento
+            if os.path.isfile(full_path):
+                print('zipeando archivo en carpeta: ' + carpeta + '/' + elemento)
+                self.zipy.write(carpeta + '/' + elemento)
+            if os.path.isdir(full_path):
+                self.tratar_carpetas(carpeta + '/'+ elemento)
+
+
 
 # eliminar absolutamente todo en dist
 print('#####################################################')
@@ -55,38 +81,41 @@ for root, dirs, files in os.walk(ORIGEN):
             print('Encontrada carpeta para copiar: ' + dire)
             copy_tree(ORIGEN + '/' +dire, COSO + '/' + dire)
 
-# # comprimir archivos para paquete
+# comprimir archivos para paquete
 print('#####################################################')
 print('Creando paquete de actualización')
-os.mkdir(DIST + '/paquete')
 for root, dirs, files in os.walk(DIST):
     for dire in dirs:
         if dire == 'zapador':
-            copy_tree(DIST + '/' + dire, DIST + '/paquete'+ '/' + dire)
+            copy_tree(DIST + '/' + dire, PACK + dire)
     
     for file in files:
         if file == 'zapador.exe':
-            shutil.copyfile(DIST + '/' + file, DIST + '/paquete/' + file)
+            shutil.copyfile(DIST + '/' + file, PACK + file)
 
+ziper = Zipeador(PACK, PAQUETE + '/zapador.zip')
+ziper.zipear()
 
-make_archive(DIST + '/paquete', PAQUETE + '/zapador.zip')
-if os.path.isdir(DIST + '/paquete'):
-    shutil.rmtree(DIST + '/paquete')
+if os.path.isdir(PACK):
+    shutil.rmtree(PACK)
 
 print('#####################################################')
 print('Creando paquete binarios distribuible')
-os.mkdir(DIST + '/binarios_zapador')
+os.mkdir(BINARIOS)
 for root, dirs, files in os.walk(DIST):
     for dire in dirs:
         if dire == 'zapador':
-            copy_tree(DIST + '/' + dire, DIST + '/' + dire + '/binarios_zapador')
+            copy_tree(DIST + '/' + dire, BINARIOS + dire)
     for file in files:
         if file == 'zapador.exe' or file == 'auto_update.exe':
-            shutil.copyfile(DIST + '/' + file, DIST + '/binarios_zapador/' + file)
+            shutil.copyfile(DIST + '/' + file, BINARIOS + file)
 
-make_archive(DIST + '/binarios_zapador', DIST + '/binarios_zapador.zip')
+ziper = Zipeador(BINARIOS, DIST + '/binarios_zapador.zip')
+ziper.zipear()
 if os.path.isdir(DIST + '/binarios_zapador'):
     shutil.rmtree(DIST + '/binarios_zapador')
 
 # Fin de proceso de build
-cowsay.cow('Se acabó el build!')
+personajes = cowsay.chars
+cowsay.personaje = random.choice(personajes)
+cowsay.personaje('Se acabó el build!')
