@@ -1,9 +1,13 @@
 import zapador.constantes as cons
 from kivy.factory import Factory
 import os
+from shutil import rmtree
 import json
 import requests as r
 import zipfile
+import re
+from packaging import version
+from subprocess import Popen, CREATE_NEW_CONSOLE
 
 # GUI
 
@@ -42,10 +46,11 @@ def pre_run():
         Factory.PrimeraVez().open()
     else:
         cons.SETTINGS_ACTUALES = leer_config()
-        manejador_plantilla()
-    ### bajar plantilla y almacenar en carpeta de config/plantilla || si no hay internet informar y no hacer nada
     # comprobar versión zapador || Si no hay internet informar y continuar
     ### actualizar zapador y volver a abrir
+        manejador_zapador()
+    ### bajar plantilla y almacenar en carpeta de config/plantilla || si no hay internet informar y no hacer nada
+        manejador_plantilla()
     # comprobar versión plantilla || Si no hay internet informar y continua
     ### preguntar si quiere actualizar
     ##### bajar plantilla y almacenar en carpeta de config/plantilla
@@ -87,23 +92,77 @@ def crear_archivo_config(popup, ruta):
 
     pre_run()
 
+def actualizar_zapador():
+    Popen(cons.DIR_SCRIPT + '/auto_update.exe', creationflags=CREATE_NEW_CONSOLE)
+    quit()
+
+def manejador_zapador():
+    """Comprueba versión actual de zapador y maneja la actualización de ser necesario"""
+    if not chequear_version('ZAPADOR', cons.ZAPADOR_VERSION):
+        Factory.NuevaVersion().open()
+
 def manejador_plantilla():
     """El manejador de plantillas maneja las plantillas"""
 
     if not os.path.isdir(cons.TEMPLATE_DIR + '/' + cons.TEMPLATE_NAME):
-        print('No hay carpeta de plantilla, se intentará bajar')
         descargar_plantilla = Factory.Descargando(
             titulo='Descargando plantilla',
             mensaje='Descargando la última versión estable de KDM'
         )
         descargar_plantilla.open()
+
+        descargar_plantilla.descargar(cons.KDM_URL, cons.TEMPLATE_DIR + cons.TEMPLATE_NAME + '.zip', unzip=True)
+    else:
+        if not chequear_version(cons.LOCAL_KDM_VERSION, cons.KDM_VERSION):
+            rmtree(cons.TEMPLATE_DIR + cons.TEMPLATE_NAME)
+            manejador_plantilla()
         
-        descargar_plantilla.descargar(cons.KDM_URL, cons.TEMPLATE_DIR + cons.TEMPLATE_NAME + '.zip')
-       
-        
-def un_zip(zip, ruta):
+def un_zip(zip, ruta, objeto):
     """Saca del zip las cosas :O"""
+
+    if os.path.isfile(ruta+'/'+objeto):
+        os.remove(ruta+'/'+objeto)
+
+    if os.path.isdir(ruta+'/'+objeto):
+        rmtree(ruta+'/'+objeto)
+
 
     with zipfile.ZipFile(zip, 'r') as zip_ref:
         zip_ref.extractall(ruta)
 
+def chequear_version(local, remoto):
+    """Comprueba la versión local y remoto, avisa si hay actualización"""
+
+    busqueda = re.compile('''version = ['"](\d+\.\d+\.\d+)['"]''', re.I)
+
+    try:
+        url = remoto.format(cons.SETTINGS_ACTUALES['BRANCH'])
+        remoto = r.get(url).text
+
+    except Exception as e:
+        error = Factory.ERROR(
+            titulo='Algo salió mal...',
+            mensaje=str(e)
+        )
+        error.open()
+    else:
+        if local == 'ZAPADOR':
+            version_local = cons.VERSION
+        else:
+            with open(local, 'r', encoding='UTF-8') as f:
+                local = f.read()
+
+            version_local = re.search(busqueda, local)
+        version_remoto = re.search(busqueda, remoto)
+        version_local = version_local.group(1)
+        version_remoto = version_remoto.group(1)
+
+
+        print('versiones: ' + version_local, version_remoto)
+
+        if version.parse(version_local) >= version.parse(version_remoto):
+            return True
+            print('versiones parecen ser igual o mejor que en server')
+        else:
+            print('versión está desfasada con server')
+            return False

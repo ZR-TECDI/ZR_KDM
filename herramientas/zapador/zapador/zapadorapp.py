@@ -41,7 +41,7 @@ class ZapadorApp(App):
         Descargando.stop.set()
 
     def build(self):
-        self.title = 'Zapador v'+cons.BUILD_VERSION
+        self.title = 'Zapador v'+cons.VERSION
         self.icon  = 'zapador/assets/img/zapador.ico'
         return sm
     

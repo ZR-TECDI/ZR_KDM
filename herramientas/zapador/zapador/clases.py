@@ -10,16 +10,19 @@ from kivy.clock import mainthread
 import threading
 import psutil
 from os import environ as env
+import os
 import requests
+
 
 class ERROR(Popup):
     titulo = StringProperty('titulo')
     mensaje = StringProperty('mensaje')
 
+
 class Descargando(Popup):
     titulo = StringProperty('titulo')
     mensaje = StringProperty('mensaje')
-    peso_max =  NumericProperty()
+    peso_max = NumericProperty()
     peso_actual = NumericProperty()
     continuar = BooleanProperty(True)
 
@@ -28,13 +31,17 @@ class Descargando(Popup):
     @mainthread
     def update_gui(self, actual):
         self.peso_actual = actual
-    
-    def descargar(self, enlace, ruta_descarga):
-        threading.Thread(target=self.descargar_threaded, args=(enlace, ruta_descarga)).start()
 
-    def descargar_threaded(self, enlace, ruta_descarga):
+    def descargar(self, enlace, ruta_descarga, unzip=False):
+        threading.Thread(target=self.descargar_threaded,
+                         args=(enlace, ruta_descarga, unzip)).start()
+
+    def descargar_threaded(self, enlace, ruta_descarga, unzip):
         enlace = enlace.format(cons.SETTINGS_ACTUALES['BRANCH'])
         response = requests.get(enlace)
+
+        if os.path.isfile(ruta_descarga):
+            os.remove(ruta_descarga)
 
         with open(ruta_descarga, 'wb') as f:
             response = requests.get(enlace, stream=True)
@@ -45,30 +52,49 @@ class Descargando(Popup):
             for chunk in response.iter_content():
                 f.write(chunk)
                 self.update_gui(i)
-                i+=1
-        un_zip(ruta_descarga, cons.TEMPLATE_DIR)
+                i += 1
+
+        if unzip:
+            un_zip(ruta_descarga, cons.TEMPLATE_DIR, cons.TEMPLATE_NAME)
         self.continuar = False
-        
+
 
 class Navegador(Popup):
     def encontrar_lugares(self):
         lugares = []
-        escritorio = env['USERPROFILE'] + '/Desktop'
-        documentos = env['USERPROFILE'] + '/Documents'
-        lugares.append(escritorio)
-        lugares.append(documentos)
-        
+
+        if cons.SETTINGS_ACTUALES:
+            lugares.append('Misiones')
+
+        lugares.append('Escritorio')
+        lugares.append('Carpeta Usuario')
+
         parts = psutil.disk_partitions()
         for part in parts:
             lugares.append(part[0])
 
         return lugares
 
+    def alias_lugares(self, alias):
+        """Maneja la ruta del navegador, usando alias en lugar de ruta completa"""
+
+        if alias == 'Misiones':
+            self.ids['filechoose'].path = cons.SETTINGS_ACTUALES['MPMISSIONS']
+            return
+
+        if alias not in cons.LISTA_ALIAS_NOMBRES:
+            self.ids['filechoose'].path = alias
+            return
+
+        self.ids['filechoose'].path = cons.LISTA_ALIAS_NOMBRES[alias]
+        
+
     def abrir_popup(self):
         self.open()
 
     def boton_abrir(self, select):
         pass
+
 
 class MPMissions(Navegador):
     def abrir_popup(self, text_id):
@@ -78,6 +104,7 @@ class MPMissions(Navegador):
     def boton_abrir(self, select):
         self.text_id.text = select[0]
         self.dismiss()
+
 
 class FotoMision(Navegador):
     def abrir_popup(self, foto_id):
@@ -120,5 +147,5 @@ class Generador():
             "es oficial: " + str(self.oficial),
             "tipo: " + self.tipo,
             "campaña: " + self.campana,
-            "path foto: " + self.foto]:
+                "path foto: " + self.foto]:
             print(e)

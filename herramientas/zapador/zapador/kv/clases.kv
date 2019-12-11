@@ -4,6 +4,7 @@
 #:import toggleado zapador.metodos.toggleado
 #:import mapa_custom zapador.metodos.mapa_custom
 #:import crear_archivo_config zapador.metodos.crear_archivo_config
+#:import actualizar_zapador zapador.metodos.actualizar_zapador
 #:import Factory kivy.factory.Factory
 
 <Contenido@GridLayout>:
@@ -152,6 +153,20 @@
             Button:
                 text:'Cancelar'
                 on_release:quit()
+<NuevaVersion@Popup>:
+    auto_dismiss:False
+    size_hint:1,1
+    title:'Bienvenido'
+
+    GridLayout:
+        rows:2
+        Label:
+            size_size_hint_y:.9
+            text:'Hay una versión más reciente de Zapador disponible'
+        Button:
+            size_hint_y:.1
+            text:'Actualizar'
+            on_release:actualizar_zapador()
 
 <MapaCustom@Popup>:
     # auto_dismiss:False
@@ -175,6 +190,8 @@
 
 
 <Navegador>:
+    filechoose:filechoose
+
     size_hint: .95,.95
     on_open:lista_lugares.values=self.encontrar_lugares();lista_lugares.text=self.encontrar_lugares()[0]
     GridLayout:
@@ -186,7 +203,7 @@
                 text:'Lugares: '
             Spinner:
                 id:lista_lugares
-                on_text:filechoose.path=self.text
+                on_text:root.alias_lugares(self.text)
         FileChooser:
             size_hint:.9,.9
             id:filechoose

@@ -1,17 +1,22 @@
 from appdirs import AppDirs
+from os import environ as env
+import os
+import sys
 
-BUILD_VERSION = '0.9.0'
+VERSION = '0.9.0'
 
 SETTINGS_DIR = AppDirs(appname='zapador', appauthor='ZR-TECDI').site_config_dir
-SETTINGS_FILE = SETTINGS_DIR + '/config.json'
-TEMPLATE_DIR = SETTINGS_DIR + '/plantilla/'
+SETTINGS_FILE = SETTINGS_DIR + '\\config.json'
+TEMPLATE_DIR = SETTINGS_DIR + '\\plantilla\\'
 TEMPLATE_NAME = 'template_ZR.VR'
+DIR_SCRIPT = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 
 KDM_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/template_ZR.VR/configurar_mision.hpp'
-LOCAL_KDM_VERSION = TEMPLATE_DIR + '/template_ZR.VR/configurar_mission.hpp'
+LOCAL_KDM_VERSION = TEMPLATE_DIR + 'template_ZR.VR\\configurar_mision.hpp'
 KDM_URL = 'https://github.com/ZR-TECDI/ZR_KDM/raw/{}/template_ZR.VR.zip'
 ZAPADOR_VERSION = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/zapador/constantes.py'
+ZAPADOR_PAQUETE = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramientas/zapador/paquete/zapador.zip'
 
 SETTINGS_INICIALES = {
     "MPMISSIONS": "",
@@ -19,6 +24,12 @@ SETTINGS_INICIALES = {
 }
 
 SETTINGS_ACTUALES = {}
+
+LISTA_ALIAS_NOMBRES = {
+    "Escritorio": env['USERPROFILE'] + '/Desktop',
+    "Carpeta Usuario": env['USERPROFILE']
+}
+
 
 LISTA_BRANCHES = ['master', 'dev-branch', 'feat/zapador_gui']#TODO quitar la última branch de acá
 
