@@ -4,7 +4,7 @@ class Header
 {
     gameType = COOP;
     minPlayers = 1;
-    maxPlayers = 50;
+    maxPlayers = 100;
 };
 
 //Respawn options
