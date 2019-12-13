@@ -9,6 +9,9 @@ from kivy.properties import BooleanProperty
 from kivy.clock import mainthread
 import threading
 import psutil
+import distutils
+from shutil import copyfile
+import re
 from os import environ as env
 import os
 import requests
@@ -115,13 +118,23 @@ class FotoMision(Navegador):
         self.foto_id.source = select[0]
         self.dismiss()
 
+class MapaCustom(Popup):
+    def abrir_popup(self, spinner):
+        self.spinner = spinner
+        self.open()
+
+    def boton_aceptar(self, mapa):
+        self.spinner.text = mapa
+        cons.LISTA_MAPAS['Otro'] = mapa
+        self.dismiss()
 
 class Generador():
-    DEBUG = True
 
     def __init__(self, autor, mision, desc, mapa, oficial, tipo, campana, nueva_campana, foto):
         if campana == "Crear Nueva":
             campana = nueva_campana
+        if mapa not in cons.LISTA_MAPAS.keys():
+            mapa = 'Otro'
 
         self.autor = autor
         self.mision = mision
@@ -135,9 +148,6 @@ class Generador():
             self.campana = 'NULL'
         self.foto = foto
 
-        if self.DEBUG:
-            self.debug_valores(mapa)
-
     def debug_valores(self, mapa):
         for e in [
             "autor: " + self.autor,
@@ -149,3 +159,81 @@ class Generador():
             "campaña: " + self.campana,
                 "path foto: " + self.foto]:
             print(e)
+    
+    def nombre_seguro(self, nombre):
+        valid_dict = {
+            "": ["`","!", ".", ",", '"', "ç", "Ç", "=","(", ")", "/", "\\", 
+                "$", "·", "%", "&", "?", "¡", "?", "'", "|", "@", "#", 
+                "~", "¬", "*", "", "`", "{", "}"],
+            "a": ["á", "à", "ä", "â"],
+            "e": ["é", "è", "ë", "ê"],
+            "i": ["í", "ì", "ï", "î"],
+            "o": ["ó", "ò", "ô", "ô"],
+            "u": ["ú", "ù", "ü", "û"],
+            "A": ["Á", "À", "Ä", "Â"],
+            "E": ["É", "È", "Ë", "Ê"],
+            "I": ["Í", "Ì", "Ï", "Î"],
+            "O": ["Ó", "Ò", "Ö", "Ô"],
+            "U": ["Ú", "Ù", "Ü", "Û"],
+            "n": ["ñ"],
+            "N": ["Ñ"],
+            "_": [" "]       
+            }
+        
+        for key, value in valid_dict.items():
+            for wea_fea in value:
+                if wea_fea in nombre:
+                    nombre = nombre.replace(wea_fea, key)
+
+        return nombre
+
+    def configurar_mision(self, variable, valor, modo):
+        busqueda = re.compile('({} = ")(.*)";'.format(variable))
+
+        if modo == 'a' or modo == 'w':
+            pass
+        else:
+            raise ValueError('Sólo modo (a)ppend y (w)rite están permitidos')
+
+        if modo == 'a':
+            with open(self.ruta_mision + '/configurar_mision.hpp', 'a', encoding='UTF-8') as f:
+                if type(valor) == bool:
+                    linea = '\n{} = {};'.format(variable, valor)
+                else: 
+                    linea = '\n{} = "{}";'.format(variable, valor)
+
+                f.write(linea) 
+        else:
+            with open(self.ruta_mision + '/configurar_mision.hpp', 'r', encoding='UTF-8')as f:
+                texto_actual = f.read()
+
+            nuevo_texto = busqueda.sub(r'\1{}";'.format(valor), texto_actual)
+            with open(self.ruta_mision + '/configurar_mision.hpp', 'w', encoding='UTF-8') as f:
+                f.write(nuevo_texto)
+
+
+
+    def generar(self):
+        nombre = self.nombre_seguro(self.mision) + self.mapa
+        self.ruta_mision = cons.SETTINGS_ACTUALES['MPMISSIONS'] + '/' + nombre
+
+        distutils.dir_util.copy_tree(cons.TEMPLATE_DIR + cons.TEMPLATE_NAME, self.ruta_mision)
+        copyfile(self.foto, self.ruta_mision+ '/' + 'loadscreen.jpg')
+        
+        self.configurar_mision('author', self.autor, 'w')
+        self.configurar_mision('OnLoadName', self.mision, 'w')
+        self.configurar_mision('OnLoadMission', self.desc, 'w')
+        self.configurar_mision('overviewText', self.desc, 'w')
+
+        self.configurar_mision('TIPO_MISION', self.tipo, 'a')
+        if not self.campana == 'NULL':
+            self.configurar_mision('NOMBRE_CAMPA', self.campana, 'a')
+        self.configurar_mision('es_oficial', self.oficial, 'a')
+
+        pop = ERROR(
+            titulo='¡Misión Generada!',
+            mensaje='Tu misión fue generada.\nCompruébalo en tu carpeta de misiones: [color=#e6cd17]{}[/color].\n\n¡Ahora sólo queda abrir tu misión en el editor de Arma3!'.format(cons.SETTINGS_ACTUALES['MPMISSIONS'])
+        )
+        pop.open()
+
+

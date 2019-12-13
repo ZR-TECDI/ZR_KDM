@@ -10,21 +10,17 @@ from packaging import version
 from subprocess import Popen, CREATE_NEW_CONSOLE
 
 # GUI
+def cancelar_config(mpmissions, branch):
+    cons.SETTINGS_ACTUALES = leer_config()
 
+    mpmissions.text = cons.SETTINGS_ACTUALES['MPMISSIONS']
+    branch.text = cons.SETTINGS_ACTUALES['BRANCH']
 
 def toggleado(wea):
     """Aplasta el botón de la página abierta en la GUI"""
 
     if wea.state == 'normal':
         wea.state = 'down'
-
-
-def mapa_custom(mapa, popup):
-    """Guarda el nombre código del mapa personalizado que introdujo el usuario"""
-
-    cons.LISTA_MAPAS['Otro'] = mapa
-    popup.dismiss()
-
 
 def widget_condicional(master, child, cond):
     """Permite deshabilitar un widget teniendo una condición en otro"""
@@ -61,6 +57,12 @@ def leer_config():
 
     with open(cons.SETTINGS_FILE, 'r', encoding='UTF-8') as f:
         return json.load(f)
+
+def get_config(key):
+    """Retorna el valor de una opción desde el archivo de opciones"""
+
+    opciones = leer_config()
+    return opciones[key]
 
 def escribir_config(config):
     """Escribe la configuración pasada por parámetro en el archivo local"""

@@ -2,12 +2,25 @@
 
 #:import zapa zapador.zapadorapp
 #:import toggleado zapador.metodos.toggleado
-#:import mapa_custom zapador.metodos.mapa_custom
 #:import crear_archivo_config zapador.metodos.crear_archivo_config
 #:import actualizar_zapador zapador.metodos.actualizar_zapador
 #:import Factory kivy.factory.Factory
 
+# <Contenido@GridLayout>:
+#     canvas:
+#         Color: 
+#             rgba: 0.20,0.18,0.18,1
+#         Rectangle:
+#             size:root.size
+#             pos:root.pos
+#     # cols:1
+#     rows:5
+#     rows_minimum:{0:40,1:40,2:40,3:40,4:200}
+#     size_hint_y:1
+#     padding:20
+#     spacing:10
 <Contenido@GridLayout>:
+    cols:1
     canvas:
         Color: 
             rgba: 0.20,0.18,0.18,1
@@ -15,11 +28,6 @@
             size:root.size
             pos:root.pos
     # cols:1
-    rows:5
-    rows_minimum:{0:40,1:40,2:40,3:40,4:200}
-    size_hint_y:1
-    padding:20
-    spacing:10
 <CampoTexto@GridLayout>:
     size_hint_y:0.2
     cols:2
@@ -168,7 +176,7 @@
             text:'Actualizar'
             on_release:actualizar_zapador()
 
-<MapaCustom@Popup>:
+<MapaCustom>:
     # auto_dismiss:False
     size_hint:.5,.5
     title:'Mapa personalizado'
@@ -186,7 +194,7 @@
         
         Button:
             text:'Aceptar'
-            on_release: mapa_custom(codigo_mapa.text, root)
+            on_release: root.boton_aceptar(codigo_mapa.text)
 
 
 <Navegador>:
