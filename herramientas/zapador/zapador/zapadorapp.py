@@ -6,13 +6,15 @@ from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 import zapador.constantes as cons
 from zapador.metodos import pre_run
 from zapador.clases import *
-from kivy.factory import Factory 
+from kivy.factory import Factory
 
-with open('zapador/kv/main.kv', encoding='UTF-8') as f: 
+ubicacion = cons.DIR_SCRIPT + '/zapador/kv/'
+
+with open('{}main.kv'.format(ubicacion), encoding='UTF-8') as f: 
     Builder.load_string(f.read())
-with open('zapador/kv/clases.kv', encoding='UTF-8') as f: 
+with open('{}clases.kv'.format(ubicacion), encoding='UTF-8') as f: 
     Builder.load_string(f.read())
-with open('zapador/kv/contenido.kv', encoding='UTF-8') as f:
+with open('{}contenido.kv'.format(ubicacion), encoding='UTF-8') as f:
     Builder.load_string(f.read())
 
 class Pantalla_Nueva(Screen):
