@@ -9,7 +9,7 @@ from kivy.properties import BooleanProperty
 from kivy.clock import mainthread
 import threading
 import psutil
-import distutils
+from distutils import dir_util
 from shutil import copyfile
 import re
 from os import environ as env
@@ -217,7 +217,7 @@ class Generador():
         nombre = self.nombre_seguro(self.mision) + self.mapa
         self.ruta_mision = cons.SETTINGS_ACTUALES['MPMISSIONS'] + '/' + nombre
 
-        distutils.dir_util.copy_tree(cons.TEMPLATE_DIR + cons.TEMPLATE_NAME, self.ruta_mision)
+        dir_util.copy_tree(cons.TEMPLATE_DIR + cons.TEMPLATE_NAME, self.ruta_mision)
         copyfile(self.foto, self.ruta_mision+ '/' + 'loadscreen.jpg')
         
         self.configurar_mision('author', self.autor, 'w')
