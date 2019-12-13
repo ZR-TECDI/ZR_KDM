@@ -55,6 +55,9 @@ def pre_run():
 def leer_config():
     """Lee la configuración desde el archivo local"""
 
+    if not os.path.isfile(cons.SETTINGS_FILE):
+        return cons.SETTINGS_INICIALES
+
     with open(cons.SETTINGS_FILE, 'r', encoding='UTF-8') as f:
         return json.load(f)
 
