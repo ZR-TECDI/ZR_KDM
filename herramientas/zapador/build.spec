@@ -1,6 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-from kivy_deps import sdl2
+from kivy_deps import sdl2, glew
 
 block_cipher = None
 
@@ -24,7 +24,7 @@ exe = EXE(pyz, Tree('D://github/corp-0/ZR_KDM/herramientas/zapador/zapador', 'za
           a.zipfiles,
           a.datas,
           [],
-          *[Tree(p) for p in (sdl2.dep_bins)],
+          *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
           name='zapador',
           debug=False,
           bootloader_ignore_signals=False,
