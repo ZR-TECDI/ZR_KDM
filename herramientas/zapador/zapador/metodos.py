@@ -172,3 +172,37 @@ def chequear_version(local, remoto):
         else:
             print('versión está desfasada con server')
             return False
+
+def leer_variable(path, variable):
+    
+    with open(path, 'r', encoding='UTF-8')as f:
+        configurar_mision = f.read()
+    
+    if not type(variable) == list:
+        busqueda = re.compile('''{} = ["']?(.*)["']?;'''.format(variable), re.I)
+
+        valor = re.search(busqueda, configurar_mision)
+        valor = valor.group(1)
+        if valor.lower() == "true":
+            valor = True
+        elif valor.lower() == "false":
+            valor = False
+        if type(valor) == str and '"' in valor:
+            valor = valor.replace('"', "")
+            
+        return valor
+    else:
+        valores = []
+
+        for var in variable:
+            busqueda = re.compile('''{} = ["']?(.*)["']?;'''.format(var), re.I)
+
+            valor = re.search(busqueda, configurar_mision)
+            valor = valor.group(1)
+            if valor.lower() == "true":
+                valor = True
+            elif valor.lower() == "false":
+                valor = False
+            valores.append(valor)
+
+        return valores

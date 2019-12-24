@@ -3,7 +3,7 @@ from os import environ as env
 import os
 import sys
 
-VERSION = '0.9.4'
+VERSION = '0.10.0'
 
 SETTINGS_DIR = AppDirs(appname='zapador', appauthor='ZR-TECDI').site_config_dir
 SETTINGS_FILE = SETTINGS_DIR + '\\config.json'
@@ -85,4 +85,14 @@ TIPO_MISION = {
     "Curso":"CURSO",
     "Cooperativa":"COOPERATIVA",
     "Otro":"OTRO"
+}
+
+TIPO_MISION_IMPORTAR = {
+    "CAMPANA":"Campaña",
+    "ENTRENAMIENTO":"Entrenamiento",
+    "GALA":"Gala",
+    "IMPROVISADA":"Improvisada",
+    "CURSO":"Curso",
+    "COOPERATIVA":"Cooperativa",
+    "OTRO":"Otro"
 }

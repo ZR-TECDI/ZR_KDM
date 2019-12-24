@@ -1,6 +1,7 @@
 import zapador.constantes as cons
 from zapador.metodos import pre_run
 from zapador.metodos import un_zip
+from zapador.metodos import leer_variable
 from kivy.uix.popup import Popup
 from kivy.factory import Factory
 from kivy.properties import StringProperty
@@ -118,6 +119,77 @@ class FotoMision(Navegador):
         self.foto_id.source = select[0]
         self.dismiss()
 
+class CargarMision(Navegador):
+    title = 'Importar misión'
+    papi = None
+
+    def validar_mision(self, path):
+        if not os.path.isfile(path[0] + '/mission.sqm'):
+            return False
+        else:
+            return True
+
+
+    def encontrar_configurar_mision(self, path):
+        if not os.path.isfile(path[0] + '/configurar_mision.hpp'):
+            return False
+        else:
+            return True
+
+    def encontrar_description(self, path):
+        if not os.path.isfile(path[0] + '/description.ext'):
+            return False
+        else:
+            return True
+
+    def actualizar_datos(self, path, origen):
+
+        self.papi.ids['nombre_autor'].text = leer_variable(origen, 'author')
+        self.papi.ids['nombre_mision'].text = leer_variable(origen, 'OnLoadName')
+        self.papi.ids['desc_mision'].text = leer_variable(origen, 'OnLoadMission')
+        
+        try:
+            self.papi.ids['listamapa'].text = leer_variable(origen, 'MAPA')
+        except:
+            self.papi.ids['listamapa'].text = 'Altis'
+        try:
+            self.papi.ids['mision_oficial'].active = leer_variable(origen, 'es_oficial')
+        except:
+            pass
+        try:
+            tipo_mision = leer_variable(origen, 'TIPO_MISION')
+            self.papi.ids['tipomision'].text = cons.TIPO_MISION_IMPORTAR[tipo_mision]
+        except:
+            pass
+        try:
+            self.papi.ids['campana_lista'].text = leer_variable(origen, 'NOMBRE_CAMPA')
+        except:
+            pass
+
+        if os.path.isfile(path[0] + '/loadscreen.jpg'):
+            self.papi.ids['fotomision'].source = path[0] + '/loadscreen.jpg'
+        elif os.path.isfile(path[0] + '/img/loadscreen.jpg'):
+            self.papi.ids['fotomision'].source = path[0] + '/img/loadscreen.jpg'
+        elif os.path.isfile(path[0] + '/img/loading.jpg'):
+            self.papi.ids['fotomision'].source = path[0] + '/img/loading.jpg'
+
+    def boton_abrir(self, path):
+        self.papi.path = path[0]
+        if not self.validar_mision(path):
+            error = Factory.ERROR(
+                titulo='Carpeta inválida',
+                mensaje='La ruta seleccionada no es una carpeta de misión válida.\
+                Asegúrate que haya un archivo mission.sqm en: \n{}\n'.format(path[0]))
+        if self.encontrar_configurar_mision(path):
+            self.actualizar_datos(path, path[0]+'/configurar_mision.hpp')
+            self.dismiss()
+        elif self.encontrar_description(path):
+            self.actualizar_datos(path, path[0]+'/description.ext')
+            self.dismiss()
+        else:
+            self.dismiss()
+
+                
 class MapaCustom(Popup):
     def abrir_popup(self, spinner):
         self.spinner = spinner
@@ -140,6 +212,7 @@ class Generador():
         self.mision = mision
         self.desc = desc
         self.mapa = cons.LISTA_MAPAS[mapa]
+        self.mapa_humano = mapa
         self.oficial = oficial
         self.tipo = cons.TIPO_MISION[tipo]
         if self.tipo == 'CAMPANA':
@@ -218,8 +291,11 @@ class Generador():
         self.ruta_mision = cons.SETTINGS_ACTUALES['MPMISSIONS'] + '/' + nombre
 
         dir_util.copy_tree(cons.TEMPLATE_DIR + cons.TEMPLATE_NAME, self.ruta_mision)
-        copyfile(self.foto, self.ruta_mision+ '/' + 'loadscreen.jpg')
-        
+        try:
+            copyfile(self.foto, self.ruta_mision+ '/' + 'loadscreen.jpg')
+        except:
+            pass
+
         self.configurar_mision('author', self.autor, 'w')
         self.configurar_mision('OnLoadName', self.mision, 'w')
         self.configurar_mision('OnLoadMission', self.desc, 'w')
@@ -229,11 +305,32 @@ class Generador():
         if not self.campana == 'NULL':
             self.configurar_mision('NOMBRE_CAMPA', self.campana, 'a')
         self.configurar_mision('es_oficial', self.oficial, 'a')
+        self.configurar_mision('MAPA', self.mapa_humano, 'a')
 
         pop = ERROR(
             titulo='¡Misión Generada!',
             mensaje='Tu misión fue generada.\nCompruébalo en tu carpeta de misiones: [color=#e6cd17]{}[/color].\n\n¡Ahora sólo queda abrir tu misión en el editor de Arma3!'.format(cons.SETTINGS_ACTUALES['MPMISSIONS'])
         )
         pop.open()
+
+    def importar(self, path):
+
+        carpeta_destino = cons.SETTINGS_ACTUALES['MPMISSIONS']+'\\'+ self.nombre_seguro(self.mision) + self.mapa
+        
+        if self.nombre_seguro(self.mision) + self.mapa in path:
+            nombre_carpeta = path.replace(cons.SETTINGS_ACTUALES['MPMISSIONS']+'\\', "")
+            os.rename(path, cons.SETTINGS_ACTUALES['MPMISSIONS'] + '\\BACKUP__{}'.format(nombre_carpeta))
+            self.mismo_nombre = True
+        else:
+            self.mismo_nombre = False
+
+        self.generar()
+
+        os.remove(carpeta_destino + '\\mission.sqm')
+        
+        if self.mismo_nombre:
+            copyfile(cons.SETTINGS_ACTUALES['MPMISSIONS'] + '\\BACKUP__{}'.format(nombre_carpeta) +'\\mission.sqm', carpeta_destino+'\\mission.sqm')
+        else:
+            copyfile(path+'\\mission.sqm' , carpeta_destino+'\\mission.sqm')
 
 

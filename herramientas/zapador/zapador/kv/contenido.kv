@@ -110,7 +110,113 @@
             text:'¡Generar!'
             size_hint_y:0.2
             on_release: Generador(nombre_autor.text, nombre_mision.text, desc_mision.text, listamapa.text, mision_oficial.active, tipomision.text, campana_lista.text, campana_input.text, fotomision.source).generar()
-  
+
+<Importar@GridLayout>:
+    cols:1
+    listamapa:listamapa
+
+    Contenido:
+        padding:5
+        GridLayout:
+            size_hint_y:0.5
+            cols:2
+            rows:3
+            padding:5
+            CampoTexto:
+                size_hint_y:0.2
+                Etiqueta:
+                    text:'Autor: '
+                EntradaTexto:
+                    id:nombre_autor
+                    text:'ZR Army - Dept. Tecnico y Diseño'
+            CampoTexto:
+                size_hint_y:0.2
+                Etiqueta:
+                    text:'Misión: '
+                EntradaTexto:
+                    id:nombre_mision
+                    text:'TEMPLATE ZR'
+            CampoTexto:
+                size_hint_y:0.2
+                Etiqueta:
+                    text:'Desc: '
+                EntradaTexto:
+                    id:desc_mision
+                    text:'Uso exclusivo de Zona Roja Army.'
+            GridLayout:
+                size_hint_y:0.2
+                rows:1
+                Label:
+                    size_hint_x:0.1
+                    text:'Mapa: '
+                    halign:'right'
+                    valign:'middle'
+                ListaDrop:
+                    id:listamapa
+                    text:'Altis'
+                    values:cons.LISTA_MAPAS.keys()
+                    on_text: if self.text == 'Otro': Factory.MapaCustom().abrir_popup(listamapa)
+            GridLayout:
+                size_hint_y:0.2
+                rows:1
+                Label:
+                    size_hint_x:0.1
+                    text:'¿Misión oficial?'
+                    halign:'right'
+                    valign:'middle'
+                Switch:
+                    size_hint_x:0.2
+                    id:mision_oficial
+            GridLayout:
+                size_hint_y:0.2
+                rows:1
+                Label:
+                    size_hint_x:0.1
+                    text:'Tipo: '
+                    halign:'right'
+                    valign:'middle'
+                ListaDrop:
+                    id:tipomision
+                    text:'Improvisada'
+                    values:cons.TIPO_MISION.keys()
+                    on_text:cond(self.text, campana_lista, 'Campaña')
+        GridLayout:
+            size_hint_y:0.2
+            cols:2
+            padding:5
+            ListaDrop:
+                id:campana_lista
+                text:'Elegir campaña'
+                values:cons.API_JSON_TEST['CAMPANAS']
+                disabled: True
+                on_text:cond(self.text, campana_input, 'Crear Nueva')
+            TextInput:
+                id:campana_input
+                text:'Nueva campaña'
+                disabled: True
+                valign:'middle'
+                halign:'center'
+        GridLayout:
+            size_hint_y:0.8
+            rows:2
+            AnchorLayout:
+                size_hint_y:0.2
+                anchor_x:'center'
+                Button:
+                    size_hint:.5,.2
+                    text:'Cambiar foto de carga'
+                    on_release:Factory.FotoMision().abrir_popup(fotomision)  
+            AsyncImage:
+                size_hint_y:0.8
+                id:fotomision
+                source:cons.DIR_SCRIPT + '/zapador/assets/img/loadscreen.jpg'
+        Button:
+            text:'¡Actualizar!'
+            size_hint_y:0.2
+            on_release: Generador(nombre_autor.text, nombre_mision.text, desc_mision.text, listamapa.text, mision_oficial.active, tipomision.text, campana_lista.text, campana_input.text, fotomision.source).importar(root.path)
+
+
+
 <Opciones@GridLayout>:
     cols:1
     

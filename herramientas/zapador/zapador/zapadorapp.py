@@ -21,7 +21,13 @@ class Pantalla_Nueva(Screen):
     pass
         
 class Pantalla_Importar(Screen):
-    pass
+    popup = Factory.CargarMision()
+    importar = None
+    def on_pre_enter(self):
+        self.importar = self.children[0].children[0]
+        self.popup.papi = self.importar
+        self.popup.open()
+        
 
 class Pantalla_Opciones(Screen):
     pass
