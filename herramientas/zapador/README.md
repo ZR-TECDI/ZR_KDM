@@ -17,7 +17,7 @@ Zapador automatiza el proceso de instalar KDM en misiones de Arma3
   
 ## Inicio rápido
 
-Descarga una versión compilada de Zapador [aquí](https://github.com/ZR-TECDI/ZR_KDM/releases/download/v0.7.0/binarios_zapador.zip). No necesitas instalar nada más en tu computadora para utilizar el programa, sólo deja el cotenido del zip en una carpeta de fácil acceso y abre `zapador.exe`.
+Descarga una versión compilada de Zapador [aquí](https://github.com/ZR-TECDI/ZR_KDM/releases/download/v0.7.0/binarios_zapador.zip). No necesitas instalar nada más en tu computadora para utilizar el programa, sólo deja el contenido del zip en una carpeta de fácil acceso y abre `zapador.exe`.
 
 Las funciones del programa están repartidas en pestañas: **Nueva** para crear una nueva misión desde cero, **Importar** para importar una misión que ya hayas creado y quieras instalarle KDM, y **S** como "settings", para cambiar el comportamiento de Zapador.
 
