@@ -21,17 +21,17 @@ Las funciones del programa están repartidas en pestañas: **Nueva** para crear 
 
 ## Colaborar
 
-Para colaborar en el desarrollo de Zapador vas a necesitar [Python 3.7.4](https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe) y manejo básico de [GIT]([https://git-scm.com/download/win](https://git-scm.com/download/win)).
+Para colaborar en el desarrollo de Zapador vas a necesitar [Python 3.7.4](https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe) y manejo básico de [GIT](https://git-scm.com/download/win).
 
 Si quieres comenzar jugando con el código fuente y familiarizarte con el mismo, sólo tienes que clonar el repositorio principal del proyecto
 ``git clone https://github.com/ZR-TECDI/ZR_KDM.git`` y navegar hasta la carpeta de Zapador con tu IDE de preferencia.
 Puedes instalar todos los requisitos para desarrollo con ``pip install -r requirements.txt``.
 
-Existe una guía para colaboradores en: [la documentación del repo]([https://github.com/ZR-TECDI/ZR_KDM/wiki](https://github.com/ZR-TECDI/ZR_KDM/wiki))
+Existe una guía para colaboradores en: [la documentación del repo](https://github.com/ZR-TECDI/ZR_KDM/wiki)
   
 ## Licencia
 
-Distribuído bajo los términos de licencia [MIT license]([https://github.com/ZR-TECDI/ZR_KDM/blob/master/LICENSE](https://github.com/ZR-TECDI/ZR_KDM/blob/master/LICENSE)). 
+Distribuído bajo los términos de licencia [MIT license](https://github.com/ZR-TECDI/ZR_KDM/blob/master/LICENSE). 
 
 Copyright 2020 ZR-TECDI
 
