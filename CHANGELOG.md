@@ -1,3 +1,23 @@
+# [0.7.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.6.1...v0.7.0) (2020-01-08)
+
+
+### Bug Fixes
+
+* **zapador:** corregida ruta de assets ([25e3d8a](https://github.com/ZR-TECDI/ZR_KDM/commit/25e3d8afc75a97ed49a84427c4bc7801a62c2619))
+* **zapador:** corregido error al no tener config ([f77b28e](https://github.com/ZR-TECDI/ZR_KDM/commit/f77b28ebe60da963e867d08c980a5bcb78ff6d92))
+* **zapador:** corregido problema de import distutils ([54515c8](https://github.com/ZR-TECDI/ZR_KDM/commit/54515c89ede4f8da32a081188963de8c24a2fe4a))
+* **zapador:** incluir lib de glew ([e57da79](https://github.com/ZR-TECDI/ZR_KDM/commit/e57da79f6fea13f95336cdece9723db6eb4dd0d7))
+* **zapador:** ya no se ejecuta manejador_plantilla dos veces la primera vez ([2f669ee](https://github.com/ZR-TECDI/ZR_KDM/commit/2f669eefd08a8fe62062e9736cbfaf8363ab3293))
+
+
+### Features
+
+* **template:**  .rar para distribuir con zapador ([e7766e1](https://github.com/ZR-TECDI/ZR_KDM/commit/e7766e1a3a8dbc0e7771f8192522d9671d30dd34))
+* **zapador:** botón para abrir carpeta config ([ea7d074](https://github.com/ZR-TECDI/ZR_KDM/commit/ea7d07485f10b44f52dcd55a647b0631ce3eb0a7))
+* **zapador:** importar y actualizar misiones hechas ([3798316](https://github.com/ZR-TECDI/ZR_KDM/commit/3798316a5dda7c7fe5a1475df030de795104a08f))
+* **zapador:** primera versión de prueba pública ([9cfd9be](https://github.com/ZR-TECDI/ZR_KDM/commit/9cfd9beb5b444f28eb892b828454a0a6cf8a4f7c))
+* **zapador:** zapador actualizado a v1.0.0 ([e83649c](https://github.com/ZR-TECDI/ZR_KDM/commit/e83649cef18a73f5587a560d8ac0161ef372d175))
+
 ## [0.6.1](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.6.0...v0.6.1) (2019-11-16)
 
 
