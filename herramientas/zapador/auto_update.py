@@ -1,32 +1,62 @@
-import os
-import time
-import sys
-import urllib.request
-from subprocess import Popen, CREATE_NEW_CONSOLE
-import json
+import zapador.constantes as cons
+from json import load
+from requests import get
+from tqdm import tqdm
+from os import system
+from os.path import isfile, isdir
+from zipfile import ZipFile
+from os import remove
+from shutil import rmtree
 
-dir_script = os.path.dirname(os.path.realpath(sys.argv[0]))
+with open(cons.SETTINGS_FILE, 'r', encoding='UTF-8') as f:
+    cons.SETTINGS_ACTUALES = load(f)
 
-try:
-    with open(dir_script + '/zapador_config.json') as f:
-        CONFIG_DICT = json.load(f)
-    branch = CONFIG_DICT['branch']
+url = cons.ZAPADOR_PAQUETE.format(cons.SETTINGS_ACTUALES['BRANCH'])
 
-except Exception as e:
-    print(str(e))
+r = get(url, stream=True)
+total_size = int(r.headers.get('content-length', 0))
+block_size = 1024
 
-url = "https://github.com/ZR-TECDI/ZR_KDM/raw/{}/herramientas/zapador/zapador.exe".format(branch)
-#Espero un segundo pa que se haya cerrado el otro programa
-time.sleep(0.3)
+print("""
+                       _____________________________________________________
+                      |                                                     |
+            / _____ | |                                                     |
+           / /(__) || |                    ACTUALIZANDO                     |
+             _______  |                       ZAPADOR                       |
+  ________/ / |OO| || |                                                     |
+ |         |-------|| |                                                     |
+(|         |     -.|| |_______________________                              |
+ |  ____   \       ||_________||____________  |             ____      ____  |
+/| / __ \   |______||     / __ \   / __ \   | |            / __ \    / __ \ |
+\|| /  \ |_______________| /  \ |_| /  \ |__| |___________| /  \ |__| /  \|_|/
+   | () |                 | () |   | () |                  | () |    | () |
+    \__/                   \__/     \__/                    \__/      \__/
 
-try:
-    ultimo_estable = urllib.request.urlretrieve(url, dir_script+'/zapador.exe')
-except Exception as e:
-    print('No se pudo descargar la última versión de Zapador')
-    print(str(e))
-else:
-    print('Última versión descargada con éxito')
-finally:
-    os.system('pause')
-    Popen(dir_script+'/zapador.exe', creationflags=CREATE_NEW_CONSOLE)
-    quit()
+    """)
+
+t=tqdm(total=total_size, unit='iB', unit_scale=True)
+with open(cons.DIR_SCRIPT + '/'+'zapador.zip', 'wb') as f:
+    for data in r.iter_content(block_size):
+        t.update(len(data))
+        f.write(data)
+t.close()
+
+if isfile(cons.DIR_SCRIPT + '/zapador.exe'):
+    remove(cons.DIR_SCRIPT + '/zapador.exe')
+if isdir(cons.DIR_SCRIPT + '/zapador'):
+    rmtree(cons.DIR_SCRIPT + '/zapador')
+
+
+print(cons.DIR_SCRIPT + '/zapador.zip')
+with ZipFile(cons.DIR_SCRIPT + '/zapador.zip', 'r') as zip_ref:
+    zip_ref.extractall(cons.DIR_SCRIPT)
+
+if total_size != 0 and t.n != total_size:
+    print("ERROR, Algo salió mal...")
+    system('pause')
+print('Actualización exitosa. Vuelve a abrir Zapador.')
+
+system('pause')
+
+if isfile(cons.DIR_SCRIPT + '/zapador.zip'):
+    remove(cons.DIR_SCRIPT + '/zapador.zip')

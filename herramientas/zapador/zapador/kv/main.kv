@@ -1,0 +1,25 @@
+#:kivy 1.11.1
+
+<Pantalla_Base@GridLayout>:
+    rows:2
+    padding:10
+    canvas:
+        Rectangle:
+            size:self.size
+            pos:self.pos
+            source:'zapador/assets/img/camo.jpg'
+
+<Pantalla_Nueva>:
+    Pantalla_Base:
+        Tabs1:
+        Nueva:
+
+<Pantalla_Importar>:
+    Pantalla_Base:
+        Tabs2:
+        Importar:
+
+<Pantalla_Opciones>:
+    Pantalla_Base:
+        Tabs3:
+        Opciones:
