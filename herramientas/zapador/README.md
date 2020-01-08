@@ -1,5 +1,7 @@
 # Zapador
 
+[![descarga](https://img.shields.io/badge/Descarga-▼-%?style=for-the-badge)](https://github.com/ZR-TECDI/ZR_KDM/releases/download/v0.7.0/binarios_zapador.zip) [![reporte](https://img.shields.io/badge/reportar-bug-red?style=for-the-badge)](https://github.com/corp-0/ZR_KDM/issues)
+
 Zapador automatiza el proceso de instalar KDM en misiones de Arma3
 
 ## Características
@@ -37,4 +39,4 @@ Copyright 2020 ZR-TECDI
 
 ## ¿Problemas?
 
-Reporta cualquier error o sugerencia en nuestra [página de issues](https://github.com/corp-0/ZR_KDM/issues.)
+Reporta cualquier error o sugerencia en nuestra [página de issues](https://github.com/corp-0/ZR_KDM/issues)
