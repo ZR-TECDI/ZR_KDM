@@ -33,7 +33,7 @@ Existe una guía para colaboradores en: [la documentación del repo](https://git
   
 ## Licencia
 
-Distribuído bajo los términos de licencia [MIT license](https://github.com/ZR-TECDI/ZR_KDM/blob/master/LICENSE). 
+Distribuído bajo los términos de licencia [MIT license](https://github.com/ZR-TECDI/ZR_KDM/blob/master/LICENSE).
 
 Copyright 2020 ZR-TECDI
 
