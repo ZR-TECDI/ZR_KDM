@@ -4,6 +4,7 @@
 #:import get_config zapador.metodos.get_config
 #:import cancelar_config zapador.metodos.cancelar_config
 #:import guardar_config zapador.metodos.escribir_config
+#:import abrir_carpeta_config zapador.metodos.abrir_carpeta_config
 #:import cons zapador.constantes
 #: import Factory kivy.factory.Factory
 
@@ -270,3 +271,4 @@
                 on_release:cancelar_config(mpmissions=config_mpmissions, branch=config_branch)
             Button:
                 text:'Carpeta config'
+                on_release:abrir_carpeta_config()
