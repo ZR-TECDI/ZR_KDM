@@ -42,6 +42,12 @@ def pre_run():
         Factory.PrimeraVez().open()
     else:
         cons.SETTINGS_ACTUALES = leer_config()
+
+        #deprecar branch de prueba #TODO eliminar en próxima versión!
+        if cons.SETTINGS_ACTUALES["BRANCH"] == "feat/zapador_gui":
+            cons.SETTINGS_ACTUALES["branch"] = "master"
+            escribir_config(cons.SETTINGS_ACTUALES)
+
     # comprobar versión zapador || Si no hay internet informar y continuar
     ### actualizar zapador y volver a abrir
         manejador_zapador()
@@ -206,3 +212,7 @@ def leer_variable(path, variable):
             valores.append(valor)
 
         return valores
+
+def abrir_carpeta_config():
+    config_dir = os.path.realpath(cons.SETTINGS_DIR)
+    os.startfile(config_dir)

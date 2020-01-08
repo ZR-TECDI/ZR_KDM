@@ -3,7 +3,7 @@ from os import environ as env
 import os
 import sys
 
-VERSION = '0.10.0'
+VERSION = '1.0.0'
 
 SETTINGS_DIR = AppDirs(appname='zapador', appauthor='ZR-TECDI').site_config_dir
 SETTINGS_FILE = SETTINGS_DIR + '\\config.json'
@@ -20,7 +20,7 @@ ZAPADOR_PAQUETE = 'https://raw.githubusercontent.com/ZR-TECDI/ZR_KDM/{}/herramie
 
 SETTINGS_INICIALES = {
     "MPMISSIONS": "",
-    "BRANCH": "feat/zapador_gui"#TODO cambiar a master una vez esté listo
+    "BRANCH": "master"
 }
 
 SETTINGS_ACTUALES = {}
@@ -31,7 +31,7 @@ LISTA_ALIAS_NOMBRES = {
 }
 
 
-LISTA_BRANCHES = ['master', 'dev-branch', 'feat/zapador_gui']#TODO quitar la última branch de acá
+LISTA_BRANCHES = ['master', 'dev-branch']
 
 LISTA_MAPAS = {
     "Altis":".Altis",
