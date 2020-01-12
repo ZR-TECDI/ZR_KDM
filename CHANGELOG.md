@@ -1,3 +1,11 @@
+# [0.8.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.7.0...v0.8.0) (2020-01-12)
+
+
+### Features
+
+* **kdm:** plantilla actualizada para nuevo ace medical ([1fe6880](https://github.com/ZR-TECDI/ZR_KDM/commit/1fe6880ea44bf9a0494026e584c4c6d7d4c0a126))
+* **kdm):** plantilla actualizada para el último ace medical ([2046aad](https://github.com/ZR-TECDI/ZR_KDM/commit/2046aad57a62dd1f3e84250e8870906240176299))
+
 # [0.7.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.6.1...v0.7.0) (2020-01-08)
 
 
