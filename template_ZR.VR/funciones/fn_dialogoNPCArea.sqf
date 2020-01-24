@@ -20,8 +20,8 @@
                 - "CIV"     => Rosa  
     2: Multiplicador de pausa, usado para calcular el tiempo entre cada línea. Default 0.15 <FLOAT>
     3: Mostrar fondo. <BOOL>
-	4: origen. <OBJECT>
-	5: radio en metros desde origen. <INTEGER>
+    4: origen. <OBJECT>
+    5: radio en metros desde origen. <INTEGER>
 
     Retorna:
     True <BOOL>
@@ -41,18 +41,18 @@
  */
 
  params ["_lineasDeTexto", 
- 		"_tipoDeChat", 
-		 ["_multiplicadorPausa", 0.15], 
-		 ["_mostrarFondo", True],
-		 "_origen", "_radio"];
+         "_tipoDeChat", 
+         ["_multiplicadorPausa", 0.15], 
+         ["_mostrarFondo", True],
+         "_origen", "_radio"];
 
 
 allPlayers - entities "HeadlessClient_F" apply {
     if (_x distance _origen =< _radio) then {
-		private _id = _x call zr_fnc_getIDJugador;
-		[_lineasDeTexto, 
-		_tipoDeChat, 
-		_multiplicadorPausa, 
-		_mostrarFondo] remoteExec ["ZR_fnc_dialogoNPC", _id]
-	};
+        private _id = _x call zr_fnc_getIDJugador;
+        [_lineasDeTexto, 
+        _tipoDeChat, 
+        _multiplicadorPausa, 
+        _mostrarFondo] remoteExec ["ZR_fnc_dialogoNPC", _id]
+    };
 };

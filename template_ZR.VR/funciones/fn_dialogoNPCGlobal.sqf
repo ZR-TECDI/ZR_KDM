@@ -39,8 +39,8 @@
  */
 
  params ["_lineasDeTexto", 
- 		"_tipoDeChat", 
-		 ["_multiplicadorPausa", 0.15], 
-		 ["_mostrarFondo", True]];
+         "_tipoDeChat", 
+         ["_multiplicadorPausa", 0.15], 
+         ["_mostrarFondo", True]];
 
 [_lineasDeTexto, _tipoDeChat, _multiplicadorPausa, _mostrarFondo] remoteExec ["ZR_fnc_dialogoNPC", 0, false]
