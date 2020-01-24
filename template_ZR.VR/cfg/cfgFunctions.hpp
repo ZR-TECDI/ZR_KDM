@@ -12,6 +12,8 @@ class CfgFunctions{
             class construir {};
             class reproducirSonido3D {};
             class dialogoNPC {};
+            class dialogoNPCArea {};
+            class dialogoNPCGlobal {};
         };
         class helper{
             file = "helper";
@@ -19,6 +21,7 @@ class CfgFunctions{
             class tomarAsistencia {preInit = 1};
             class escribirDatosDeMision {preInit = 1};
             class encontrarObjetosPorVariable {};
+            class getIDJugador {};
         };
     };    
 };
