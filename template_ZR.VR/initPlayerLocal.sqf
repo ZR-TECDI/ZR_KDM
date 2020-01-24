@@ -1,5 +1,3 @@
-[] execVM "dmb\dmb_addAction.sqf";
-
 //Esperar a que el jugador exista
 waitUntil {not isNull player};
 //Poner arma al hombro
