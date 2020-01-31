@@ -1,6 +1,6 @@
 VERSION = "1.2.0"
 //General
-author = "ZR Army - Dept. Tecnico y Diseño";
+author = "ZR Army - Dept. Técnico y Diseño";
 OnLoadName = "TEMPLATE ZR";
 OnLoadMission = "Uso exclusivo de Zona Roja Army.";
 loadScreen = "loadscreen.jpg";
