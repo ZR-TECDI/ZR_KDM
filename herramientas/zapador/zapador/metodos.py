@@ -170,7 +170,7 @@ def chequear_version(local, remoto, objeto):
             version_local = version_local.group(1)
         version_remoto = version_remoto.group(1)
 
-        print(f"{objecto}: local ={version_local}, server = {version_remoto}")
+        print(f"{objeto}: local ={version_local}, server = {version_remoto}")
 
         if version.parse(version_local) >= version.parse(version_remoto):
             return True
