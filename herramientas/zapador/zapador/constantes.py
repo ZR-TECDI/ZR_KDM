@@ -3,7 +3,7 @@ from os import environ as env
 import os
 import sys
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 
 SETTINGS_DIR = AppDirs(appname='zapador', appauthor='ZR-TECDI').site_config_dir
 SETTINGS_FILE = SETTINGS_DIR + '\\config.json'

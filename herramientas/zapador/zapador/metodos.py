@@ -109,7 +109,7 @@ def actualizar_zapador():
 
 def manejador_zapador():
     """Comprueba versión actual de zapador y maneja la actualización de ser necesario"""
-    if not chequear_version('ZAPADOR', cons.ZAPADOR_VERSION):
+    if not chequear_version('ZAPADOR', cons.ZAPADOR_VERSION, "versión Zapador"):
         Factory.NuevaVersion().open()
 
 def manejador_plantilla():
@@ -124,7 +124,7 @@ def manejador_plantilla():
 
         descargar_plantilla.descargar(cons.KDM_URL, cons.TEMPLATE_DIR + cons.TEMPLATE_NAME + '.zip', unzip=True)
     else:
-        if not chequear_version(cons.LOCAL_KDM_VERSION, cons.KDM_VERSION):
+        if not chequear_version(cons.LOCAL_KDM_VERSION, cons.KDM_VERSION, "versión Plantilla"):
             rmtree(cons.TEMPLATE_DIR + cons.TEMPLATE_NAME)
             manejador_plantilla()
         
@@ -141,10 +141,11 @@ def un_zip(zip, ruta, objeto):
     with zipfile.ZipFile(zip, 'r') as zip_ref:
         zip_ref.extractall(ruta)
 
-def chequear_version(local, remoto):
+def chequear_version(local, remoto, objeto):
     """Comprueba la versión local y remoto, avisa si hay actualización"""
 
     busqueda = re.compile('''version = ['"](\d+\.\d+\.\d+)['"]''', re.I)
+    # Busca en los archivos de texto la definición de versión.
 
     try:
         url = remoto.format(cons.SETTINGS_ACTUALES['BRANCH'])
@@ -169,8 +170,7 @@ def chequear_version(local, remoto):
             version_local = version_local.group(1)
         version_remoto = version_remoto.group(1)
 
-
-        print('versiones: ' + version_local, version_remoto)
+        print(f"{objeto}: local ={version_local}, server = {version_remoto}")
 
         if version.parse(version_local) >= version.parse(version_remoto):
             return True

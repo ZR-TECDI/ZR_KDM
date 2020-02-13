@@ -36,7 +36,3 @@ corpseRemovalMaxTime = 1800;
 
 //funciones
 #include "cfg\cfgFunctions.hpp"
-
-//diálogos
-#include "dmb\dialog_def.hpp"
-#include "rc_pos\dialog_def.hpp"
