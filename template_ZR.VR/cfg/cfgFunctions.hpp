@@ -14,6 +14,7 @@ class CfgFunctions{
             class dialogoNPC {};
             class dialogoNPCArea {};
             class dialogoNPCGlobal {};
+            class dialogoNPCPRivado {};
         };
         class helper{
             file = "helper";
