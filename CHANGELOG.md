@@ -1,3 +1,24 @@
+# [0.9.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.8.0...v0.9.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **kdm:** arregla función para hacer diálogo en área ([2a4569f](https://github.com/ZR-TECDI/ZR_KDM/commit/2a4569f7efdeae45e9866f12612fb1a3f6c5fc9c))
+* **kdm:** eliminada referencia a scripts eliminados previamente ([3ef7c08](https://github.com/ZR-TECDI/ZR_KDM/commit/3ef7c0872ae85516bcff68175e1e86d8ae0975f5))
+* **kdm:** eliminado principal sospechoso de mem leak ([966498b](https://github.com/ZR-TECDI/ZR_KDM/commit/966498b905006662946cd78c9d043d2dfb15147c))
+* **kdm:** plantilla actualizada correctamente ([7784cde](https://github.com/ZR-TECDI/ZR_KDM/commit/7784cdeab09f106e0e4bf1d7aa22142d39a27c39))
+* **zapador:** corregido nombre de variable que causaba crash ([24c4fb9](https://github.com/ZR-TECDI/ZR_KDM/commit/24c4fb9b03c130502f832b79e621d069d61782d5))
+
+
+### Features
+
+* **kdm:** actualizada plantilla de personajes ([d9710e0](https://github.com/ZR-TECDI/ZR_KDM/commit/d9710e0ab34a993d65687ad00ef5e016142f4a9f))
+* **kdm:** agregada función para diálogo npc privado ([557b707](https://github.com/ZR-TECDI/ZR_KDM/commit/557b70734971de66a73d0c3c7125d0380064d2ad))
+* **kdm:** agregado script para izar bandera ([8d58675](https://github.com/ZR-TECDI/ZR_KDM/commit/8d58675c313b6c0fff43be6b3b7b2bd4cae02009))
+* **kdm:** agregados toques de corneta a la plantilla ([09b5191](https://github.com/ZR-TECDI/ZR_KDM/commit/09b5191131b1c069d28f0ac1b2e37564851efb99))
+* **kdm:** nuevas funciones para dialogo npc ([148b0fb](https://github.com/ZR-TECDI/ZR_KDM/commit/148b0fbd236d7627da8de39dc5385b537a948c4e))
+* **zapador:** mejorado texto que comprueba versiones en consola ([ce04fb4](https://github.com/ZR-TECDI/ZR_KDM/commit/ce04fb4d37d61bad090c5a28f2663d735dda4c46))
+
 # [0.8.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.7.0...v0.8.0) (2020-01-12)
 
 
