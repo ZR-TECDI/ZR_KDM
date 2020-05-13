@@ -21,6 +21,7 @@ showGPS = 1;
 
 //Debug and Admin
 enableDebugConsole = 1;
+allowFunctionsRecompile = 1;
 
 //Sets the variables for corpse removal manager
 corpseManagerMode = 1;
