@@ -47,12 +47,12 @@
          "_origen", "_radio"];
 
 
-allPlayers - entities "HeadlessClient_F" apply {
-    if (_x distance _origen =< _radio) then {
+(allPlayers - entities "HeadlessClient_F") apply {
+    if (_x distance _origen <= _radio) then {
         private _id = _x call zr_fnc_getIDJugador;
         [_lineasDeTexto, 
         _tipoDeChat, 
         _multiplicadorPausa, 
-        _mostrarFondo] remoteExec ["ZR_fnc_dialogoNPC", _id]
+        _mostrarFondo] remoteExec ["ZR_fnc_dialogoNPC", _x, false];
     };
 };
