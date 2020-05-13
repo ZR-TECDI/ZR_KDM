@@ -14,18 +14,7 @@
     Retorna:
     --
 */
-desconectados = [];
 
-//Para las desconexiones
-addMissionEventHandler ["handleDisconnect", {
-    params["_unit", "_id", "_uid", "_name"];
-    _unit hideObjectGlobal true;
-    _unit disableAI "ALL";
-
-    _unit allowDamage false;
-
-    true;
-}];
 
 /*
 ********* Variables de misión ******

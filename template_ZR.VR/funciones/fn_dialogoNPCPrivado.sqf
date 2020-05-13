@@ -1,6 +1,7 @@
 /*
     Autor: Riquelme
-    Desc : Inicia diálogo en texto para los jugadores en un área particular
+    Desc : Inicia diálogo en texto para un único jugador en particular. 
+    Debe correr en la máquina local del jugador en cuestión!
     
     Argumentos:
     0: Array con el nombre variable que contiene cada línea de diálogo. <ARRAY>
@@ -20,8 +21,6 @@
                 - "CIV"     => Rosa  
     2: Multiplicador de pausa, usado para calcular el tiempo entre cada línea. Default 0.15 <FLOAT>
     3: Mostrar fondo. <BOOL>
-    4: origen. <OBJECT>
-    5: radio en metros desde origen. <INTEGER>
 
     Retorna:
     True <BOOL>
@@ -43,16 +42,7 @@
  params ["_lineasDeTexto", 
          "_tipoDeChat", 
          ["_multiplicadorPausa", 0.15], 
-         ["_mostrarFondo", True],
-         "_origen", "_radio"];
+         ["_mostrarFondo", True]];
 
 
-(allPlayers - entities "HeadlessClient_F") apply {
-    if (_x distance _origen <= _radio) then {
-        private _id = _x call zr_fnc_getIDJugador;
-        [_lineasDeTexto, 
-        _tipoDeChat, 
-        _multiplicadorPausa, 
-        _mostrarFondo] remoteExec ["ZR_fnc_dialogoNPC", _x, false];
-    };
-};
+[_lineasDeTexto, _tipoDeChat, _multiplicadorPausa, _mostrarFondo] spawn ZR_fnc_dialogoNPC;
