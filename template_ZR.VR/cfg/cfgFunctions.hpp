@@ -15,6 +15,7 @@ class CfgFunctions{
             class dialogoNPCArea {};
             class dialogoNPCGlobal {};
             class dialogoNPCPRivado {};
+            class registrarCajaSuministros {};
         };
         class helper{
             file = "helper";
