@@ -1,3 +1,11 @@
+# [0.10.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.9.0...v0.10.0) (2020-07-12)
+
+
+### Features
+
+* **KDM:** Agregado script para recuperar loadout al respawnear ([de13aa2](https://github.com/ZR-TECDI/ZR_KDM/commit/de13aa22831ef7926f6857824694d9c48f58b59c))
+* **KDM:** Agregado sistema de cajas de suministros ([2472f6a](https://github.com/ZR-TECDI/ZR_KDM/commit/2472f6a439aaf576259f7eaed1b0b73db81a9ca4))
+
 # [0.9.0](https://github.com/ZR-TECDI/ZR_KDM/compare/v0.8.0...v0.9.0) (2020-05-13)
 
 
