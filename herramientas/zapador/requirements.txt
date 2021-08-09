@@ -18,7 +18,7 @@ Pygments==2.5.2
 PyInstaller==3.5
 pyparsing==2.4.5
 pypiwin32==223
-pywin32==227
+pywin32==301
 pywin32-ctypes==0.2.0
 requests==2.22.0
 six==1.13.0
